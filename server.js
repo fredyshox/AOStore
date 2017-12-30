@@ -6,6 +6,8 @@ var port = 1337;
 
 var app = express();
 
+var db = require("./db");
+
 //view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'main', layoutsDir: path.join(__dirname, 'views', 'layouts')}));
 app.set('views', path.join(__dirname, 'views', 'templates'));
