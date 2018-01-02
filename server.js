@@ -19,6 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //additional setup
 app.use(bodyParser.json());
 
+//routers
+app.use('/users', require('./controllers/api/users'));
+
 app.get('/', function(req, res) {
   res.render('home', {title: "Hello World"});
 });
