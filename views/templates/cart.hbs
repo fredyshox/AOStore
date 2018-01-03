@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  {{#if items}}
+    <div>
+      <h2>Your cart</h2>
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col" class="text-right">Price</th>
+            <th scope="col" class="text-right">Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each items}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td align="right">{{this.price}}</td>
+            <td align="right">{{this.quantity}}</td>
+            <td align="right">
+              <i class="fa fa-minus">
+                <a></a>
+              <i>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <h5 class="text-right">Sum: 44444 EUR</h5>
+      <button type="button" class="btn btn-secondary pull-left mt-4">Go back</button>
+      <button type="button" class="btn btn-success pull-right mt-4">Proceed to checkout</button>
+    </div>
+  {{else}}
+    <div class="text-center">
+      <h3>Your cart is empty</h3>
+      <p>Look back at out products and find sth for urself.</p>
+    </div>
+  {{/if}}
+</div>

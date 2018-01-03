@@ -1,0 +1,9 @@
+{
+  "db": {
+    "user":"root",
+    "password": "ppsswwdd",
+    "host":"localhost",
+    "database":"aos_db",
+    "connectionLimit": 100
+  }
+}
