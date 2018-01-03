@@ -21,7 +21,10 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+<<<<<<< HEAD
     "jsonwebtoken": "^8.1.0",
+=======
+>>>>>>> 5cc2946accd54296947a9f44f333d3052373a688
     "mysql2": "^1.5.1"
   }
 }

@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //additional setup
 app.use(bodyParser.json());
 
+<<<<<<< HEAD
 //api
 app.use('/users', require('./controllers/api/users'));
 
@@ -28,6 +29,13 @@ app.use('/account', require('./controllers/routes/account'));
 
 app.get('/', function(req, res) {
   res.render('account', {items: [{name: "Mac", price: 9999, quantity: 2}]});
+=======
+//routers
+app.use('/users', require('./controllers/api/users'));
+
+app.get('/', function(req, res) {
+  res.render('home', {title: "Hello World"});
+>>>>>>> 5cc2946accd54296947a9f44f333d3052373a688
 });
 
 app.listen(port, function() {

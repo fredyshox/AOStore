@@ -22,7 +22,11 @@ var users = () => {
 var userWithID = (id) => {
   return db.execute(`SELECT *
                      FROM \`Users\`
+<<<<<<< HEAD
                      WHERE \`Users\`.ID = ?;`, [id]);
+=======
+                     WHERE Users.ID = ?;`, [id]);
+>>>>>>> 5cc2946accd54296947a9f44f333d3052373a688
 };
 
 
