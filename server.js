@@ -25,9 +25,10 @@ app.use('/users', require('./controllers/api/users'));
 //routes
 app.use('/cart', require('./controllers/routes/cart'));
 app.use('/account', require('./controllers/routes/account'));
+app.use('/login', require('./controllers/routes/login'));
 
 app.get('/', function(req, res) {
-  res.render('account', {items: [{name: "Mac", price: 9999, quantity: 2}]});
+  res.render('products', {categories: [{id:4, name:"Compyterrs"}]});
 });
 
 app.listen(port, function() {

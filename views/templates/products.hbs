@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  {{#each products as |product|}}
+    <div class="row">
+      <div class="col-3 text-center">
+        {{!-- temporary --}}
+        <i class="fa fa-cart-arrow-down fa-5x"></i>
+      </div>
+      <div class="col-9">
+        <a class="text-primary" href="#"><h4>{{product.name}}</h4></a>
+        <p><span class="text-muted">Availability: </span>{{product.quantity}} items</p>
+        <h5>{{product.price}} EUR</h5>
+        <button type="button" class="btn btn-primary mt-1 px-3">
+          Add to cart
+          <i class="fa fa-cart-arrow-down fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  {{/each}}
+</div>
