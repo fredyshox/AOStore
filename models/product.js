@@ -21,14 +21,15 @@ initialize();
 var products = (lastRow=0, name='') => {
   var itemCount = 10;
   var querySql = `SELECT *
-                  FROM \`Products\` p
-                  LIMIT ?,?`
-  querySql = db.format(querySql, [lastRow, lastRow + itemCount]);
+                  FROM \`Products\` p`
 
   if (name.length > 2) {
-    querySql = querySql + ' WHERE p.name LIKE %?%;';
-    querySql = db.format(querySql, [name]);
+    var pattern = '%' + name + '%';
+    querySql = querySql + ' WHERE p.name LIKE ?';
+    querySql = db.format(querySql, [pattern]);
   }
+  querySql = querySql + ' LIMIT ?,?'
+  querySql = db.format(querySql, [lastRow, lastRow + itemCount]);
 
   return db.execute(querySql);
 }
