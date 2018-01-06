@@ -1,19 +1,32 @@
 <div class="container mt-4">
-  {{#each products as |product|}}
-    <div class="row">
-      <div class="col-3 text-center">
-        {{!-- temporary --}}
-        <i class="fa fa-cart-arrow-down fa-5x"></i>
-      </div>
-      <div class="col-9">
-        <a class="text-primary" href="#"><h4>{{product.name}}</h4></a>
-        <p><span class="text-muted">Availability: </span>{{product.quantity}} items</p>
-        <h5>{{product.price}} EUR</h5>
-        <button type="button" class="btn btn-primary mt-1 px-3">
-          Add to cart
-          <i class="fa fa-cart-arrow-down fa-lg"></i>
-        </button>
-      </div>
+  {{#if products}}
+    <div class="text-center mb-4">
+      <h4>Here's what we found.</h4>
     </div>
-  {{/each}}
+    {{#each products as |product|}}
+      <div class="row">
+        <div class="col-2 text-center">
+          {{#if products.img}}
+            {{!-- temporary no image --}}
+          {{else}}
+            <img class="img-fluid" src="/no-image.png">
+          {{/if}}
+        </div>
+        <div class="col-10">
+          <a class="text-primary" href="/products/{{product.ID}}/"><h4>{{product.name}}</h4></a>
+          <p><span class="text-muted">Availability: </span>{{product.quantity}} items</p>
+          <h5>{{product.price}} EUR</h5>
+          <button type="button" class="btn btn-primary mt-1 px-3">
+            Add to cart
+            <i class="fa fa-cart-arrow-down fa-lg"></i>
+          </button>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <div class="text-center">
+      <h3>Products not found</h3>
+      <p>There are no products matching search term.</p>
+    </div>
+  {{/if}}
 </div>
