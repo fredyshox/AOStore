@@ -8,5 +8,9 @@ router.get('/data', (req, res, next) => {
   res.render('userdata', {});
 });
 
+router.get('/addaddress', (req, res, next) => {
+  res.render('addaddress', {});
+});
+
 
 module.exports = router;

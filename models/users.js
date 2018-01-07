@@ -2,6 +2,8 @@ const db = require("../db");
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
 
+var name = 'User';
+
 var initialize = async(() => {
   await(db.query(`CREATE TABLE IF NOT EXISTS \`Users\` (
             ID int NOT NULL AUTO_INCREMENT,
@@ -25,5 +27,11 @@ var userWithID = (id) => {
                      WHERE \`Users\`.ID = ?;`, [id]);
 };
 
+var userWithEmail = (email) => {
+  return db.execute(`SELECT *
+                     FROM \`Users\`
+                     WHERE \`Users\`.email = ?`, [email]);
+}
 
-module.exports = { users, userWithID };
+
+module.exports = { name, users, userWithID, userWithEmail };

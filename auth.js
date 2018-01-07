@@ -1,12 +1,12 @@
 var jwt = require('jsonwebtoken');
-var secret = "ddddd";
+var secret = require("./config").secret;
 
 var expireTime = 3600 * 24 * 7;
 
 var createToken = (auth) => {
   var token = jwt.sign({
     id: auth.id,
-    email: auth.email
+    permissions: auth.permissions
   },secret, {
     expiresIn: expireTime
   })
@@ -19,10 +19,10 @@ module.exports.generateToken = function(req, res, next) {
   next();
 };
 
-module.exports.sendToken = function(req, res) {
+module.exports.applyToken = function(req, res) {
   res.setHeader('x-auth', req.token);
   //page rendering
-  res.status(200).json(req.user);
+  next()
 };
 
 
