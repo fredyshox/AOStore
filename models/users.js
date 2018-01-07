@@ -5,7 +5,7 @@ const await = require("asyncawait/await");
 var name = 'User';
 
 var initialize = async(() => {
-  await(db.query(`CREATE TABLE IF NOT EXISTS \`Users\` (
+  await (db.query(`CREATE TABLE IF NOT EXISTS \`Users\` (
             ID int NOT NULL AUTO_INCREMENT,
             email varchar(128),
             password varchar(256),
@@ -34,4 +34,9 @@ var userWithEmail = (email) => {
 }
 
 
-module.exports = { name, users, userWithID, userWithEmail };
+module.exports = {
+  name,
+  users,
+  userWithID,
+  userWithEmail
+};
