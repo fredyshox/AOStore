@@ -10,7 +10,7 @@ class ProductIsAvailable extends BaseModel {
 };
 ProductIsAvailable.prototype.initialize = async (() => {
   await (db.query(`DELIMITER $
-                  CREATE FUNCTION \`productIsAvailable\`(IxD INT, num INT)
+                  CREATE FUNCTION IF NOT EXISTS\`productIsAvailable\`(IxD INT, num INT)
                   RETURNS BOOLEAN BEGIN
                   	IF (SELECT quantity FROM \`Products\` WHERE ID=ixD) >= num
                     THEN
