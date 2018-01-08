@@ -1,22 +1,23 @@
 var db = require('../db');
-const async = require("asyncawait/async");
-const await = require("asyncawait/await");
-
+const async = require('asyncawait/async');
+const await = require('asyncawait/await');
+const BaseModel = require('./baseModel');
 var name = 'Deliverer';
 
-var initialize = async (() => {
+class Deliverer extends BaseModel {
+  constructor() {
+    super(name);
+  }
+}
+
+Deliverer.prototype.initialize = async (() => {
   await (db.query(`CREATE TABLE IF NOT EXISTS \`Deliverer\` (
-                	\`ID\` INT NOT NULL,
+                	\`ID\` INT NOT NULL AUTO_INCREMENT,
                 	\`name\` VARCHAR(16) NOT NULL,
                 	\`price\` FLOAT NOT NULL,
                 	PRIMARY KEY (\`ID\`)
             );`));
-  console.log("Carts created")
-})
+  console.log(name + " created")
+});
 
-initialize();
-
-
-module.exports = {
-  name
-};
+module.exports = new Deliverer();

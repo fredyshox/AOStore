@@ -1,10 +1,16 @@
 const db = require("../db");
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
-
+const BaseModel = require('./baseModel');
 var name = 'User';
 
-var initialize = async(() => {
+class User extends BaseModel {
+  constructor() {
+    super(name);
+  }
+}
+
+User.prototype.initialize = async(() => {
   await (db.query(`CREATE TABLE IF NOT EXISTS \`Users\` (
             ID int NOT NULL AUTO_INCREMENT,
             email varchar(128),
@@ -12,31 +18,24 @@ var initialize = async(() => {
             permissions enum('user', 'mod', 'admin'),
             PRIMARY KEY(ID)
           );`));
-  console.log("Users created");
+  console.log(name + " created")
 });
 
-initialize();
-
-var users = () => {
+User.prototype.users = () => {
   return db.query(`SELECT * FROM \`Users\`;`);
 };
 
-var userWithID = (id) => {
+User.prototype.userWithID = (id) => {
   return db.execute(`SELECT *
                      FROM \`Users\`
                      WHERE \`Users\`.ID = ?;`, [id]);
 };
 
-var userWithEmail = (email) => {
+User.prototype.userWithEmail = (email) => {
   return db.execute(`SELECT *
                      FROM \`Users\`
                      WHERE \`Users\`.email = ?`, [email]);
 }
 
 
-module.exports = {
-  name,
-  users,
-  userWithID,
-  userWithEmail
-};
+module.exports = new User();

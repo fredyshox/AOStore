@@ -1,12 +1,18 @@
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
+const BaseModel = require('./baseModel');
+var name = 'Review';
 
-var name = 'Reviews';
+class Review extends BaseModel {
+  constructor() {
+    super(name);
+  }
+}
 
-var initialize = async (() => {
+Review.prototype.initialize = async (() => {
   await (db.query(`CREATE TABLE IF NOT EXISTS \`Reviews\` (
-                	\`ID\` INT NOT NULL,
+                	\`ID\` INT NOT NULL AUTO_INCREMENT,
                 	\`userID\` INT NOT NULL,
                 	\`productID\` INT NOT NULL,
                 	\`stars\` INT(1) NOT NULL,
@@ -14,6 +20,10 @@ var initialize = async (() => {
                 	\`createdAt\` DATE NOT NULL,
                 	PRIMARY KEY (\`ID\`)
             );`));
+  console.log(name + " created")
+})
+
+Review.prototype.addConstraints = async(() => {
   await (db.query(`ALTER TABLE \`Reviews\`
                   ADD CONSTRAINT \`Reviews_fk0\`
                   FOREIGN KEY (\`userID\`) REFERENCES \`Users\`(\`ID\`);`));
@@ -21,12 +31,9 @@ var initialize = async (() => {
   await (db.query(`ALTER TABLE \`Reviews\`
                   ADD CONSTRAINT \`Reviews_fk1\`
                   FOREIGN KEY (\`productID\`) REFERENCES \`Products\`(\`ID\`);`));
-  console.log("Carts created")
+
+  console.log(name + " constraints added");
 })
 
-initialize();
 
-
-module.exports = {
-  name
-};
+module.exports = new Review();

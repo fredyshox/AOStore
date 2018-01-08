@@ -1,9 +1,16 @@
-const db = require("../db");
-const async = require("asyncawait/async");
-const await = require("asyncawait/await");
+const db = require('../db');
+const async = require('asyncawait/async');
+const await = require('asyncawait/await');
+const BaseModel = require('./baseModel');
 var name = 'Product';
 
-var initialize = async(() => {
+class Product extends BaseModel {
+  constructor() {
+    super(name);
+  }
+}
+
+Product.prototype.initialize = async(() => {
   await(db.query(`CREATE TABLE IF NOT EXISTS  \`Products\` (
                 	\`ID\` INT NOT NULL AUTO_INCREMENT,
                 	\`name\` varchar(64) NOT NULL,
@@ -13,12 +20,10 @@ var initialize = async(() => {
                 	\`categoryID\` INT NOT NULL,
                 	PRIMARY KEY (\`ID\`)
                 );`))
-  console.log("Products created");
+  console.log(name + " created")
 })
 
-initialize();
-
-var products = (lastRow=0, name='') => {
+Product.prototype.products = (lastRow=0, name='') => {
   var itemCount = 10;
   var querySql = `SELECT *
                   FROM \`Products\` p`
@@ -34,10 +39,11 @@ var products = (lastRow=0, name='') => {
   return db.execute(querySql);
 }
 
-var productWithID = (id) => {
+Product.prototype.productWithID = (id) => {
   return db.execute(`SELECT *
                      FROM \`Products\` p
                      WHERE p.ID = ?`, [id]);
 }
 
-module.exports = { name, products, productWithID }
+
+module.exports = new Product();
