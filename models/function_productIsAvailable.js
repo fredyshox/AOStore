@@ -32,4 +32,4 @@ ProductIsAvailable.prototype.productIsAvailable = (productID, quantity) => {
 initialize();
 
 
-module.exports = new Delte_Old_ParentCategory();
+module.exports = new ProductIsAvailable();
