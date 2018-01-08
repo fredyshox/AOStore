@@ -8,7 +8,7 @@ class Delte_Old_ParentCategory extends BaseModel {
     super(name);
   }
 };
-Decremet_Quantity.prototype.initialize = async (() => {
+Delte_Old_ParentCategory.prototype.initialize = async (() => {
   await (db.query(`CREATE TRIGGER IF NOT EXISTS \`Delte_Old_ParentCategory\`
                         BEFORE delete ON \`ProductCategory\`
                         	FOR EACH ROW BEGIN

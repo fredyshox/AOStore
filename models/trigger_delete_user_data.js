@@ -8,7 +8,7 @@ class Delete_User_Data extends BaseModel {
     super(name);
   }
 };
-Decremet_Quantity.prototype.initialize = async (() => {
+Delete_User_Data.prototype.initialize = async (() => {
   await (db.query(`CREATE TRIGGER IF NOT EXISTS \`Delete_User_Data\`
                         BEFORE delete ON \`Users\`
                         	FOR EACH ROW BEGIN
