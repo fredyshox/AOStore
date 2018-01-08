@@ -32,7 +32,7 @@ MakeOrder.prototype.initialize = async (() => {
 })
 
 MakeOrder.prototype.makeOrder = (userID, deliveryID) => {
-  return db.execute(`call 4list.makeOrder(?, ?);`, [userID], [deliveryID]);
+  return db.execute(`call aos_db.makeOrder(?, ?);`, [userID], [deliveryID]);
 }
 
 initialize();
