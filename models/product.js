@@ -10,20 +10,20 @@ class Product extends BaseModel {
   }
 }
 
-Product.prototype.initialize = async(() => {
-  await(db.query(`CREATE TABLE IF NOT EXISTS  \`Products\` (
+Product.prototype.initialize = async (() => {
+  await (db.query(`CREATE TABLE IF NOT EXISTS  \`Products\` (
                 	\`ID\` INT NOT NULL AUTO_INCREMENT,
                 	\`name\` varchar(64) NOT NULL,
                 	\`price\` FLOAT NOT NULL,
                 	\`description\` varchar(512) NOT NULL,
                 	\`quantity\` INT NOT NULL,
-                	\`categoryID\` INT NOT NULL,
+                	\`parentID\` INT NOT NULL,
                 	PRIMARY KEY (\`ID\`)
                 );`))
   console.log(name + " created")
 })
 
-Product.prototype.products = (lastRow=0, name='') => {
+Product.prototype.products = (lastRow = 0, name = '') => {
   var itemCount = 10;
   var querySql = `SELECT *
                   FROM \`Products\` p`

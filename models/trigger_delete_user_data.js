@@ -2,8 +2,8 @@ var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
 const BaseModel = require('./baseModel');
-var name = 'Decremet_Quantity';
-class Decremet_Quantity extends BaseModel {
+var name = 'Delete_User_Data';
+class Delete_User_Data extends BaseModel {
   constructor() {
     super(name);
   }
@@ -23,4 +23,4 @@ Decremet_Quantity.prototype.initialize = async (() => {
 initialize();
 
 
-module.exports = new Decremet_Quantity();
+module.exports = new Delete_User_Data();
