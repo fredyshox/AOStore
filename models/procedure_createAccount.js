@@ -24,8 +24,13 @@ CreateAccount.prototype.initialize = async (() => {
   console.log(name + " created")
 })
 
-CreateAccount.prototype.makeOrder = (email, password) => {
-  return db.execute(`call aos_db.createAccount(?, ?);`, [email], [password]);
+CreateAccount.prototype.createAccount = (
+  userID, firstName, lastName, phoneNo, postalCode, country, province, city,
+  street, buildingNo, flatNo
+) => {
+  return db.execute(
+    `call aos_db.createAccount(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, [userID], [firstName], [lastName], [phoneNo], [postalCode], [country], [province], [city], [street], [buildingNo], [flatNo]
+  );
 }
 
 initialize();

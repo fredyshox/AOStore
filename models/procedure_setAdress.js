@@ -3,12 +3,12 @@ const async = require("asyncawait/async");
 const await = require("asyncawait/await");
 const BaseModel = require('./baseModel');
 var name = 'CreateAcoount';
-class CreateAccount extends BaseModel {
+class SetAdress extends BaseModel {
   constructor() {
     super(name);
   }
 };
-CreateAccount.prototype.initialize = async (() => {
+SetAdress.prototype.initialize = async (() => {
   await (db.query(`DELIMITER $
                   CREATE PROCEDURE \`setAdress\`(
                   	ID Int,firstName VARCHAR(32), lastName VARCHAR(32), phoneNo INT, postalCode VARCHAR(16), country VARCHAR(32),
@@ -31,11 +31,11 @@ CreateAccount.prototype.initialize = async (() => {
   console.log(name + " created")
 })
 
-CreateAccount.prototype.makeOrder = (email, password) => {
+SetAdress.prototype.setAdress = (email, password) => {
   return db.execute(`call aos_db.setAdress(?, ?);`, [email], [password]);
 }
 
 initialize();
 
 
-module.exports = new CreateAccount();
+module.exports = new SetAdress();
