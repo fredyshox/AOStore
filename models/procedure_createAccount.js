@@ -25,7 +25,7 @@ CreateAccount.prototype.initialize = async (() => {
 })
 
 CreateAccount.prototype.makeOrder = (email, password) => {
-  return db.execute(`call aos_db.setAdress(?, ?);`, [email], [password]);
+  return db.execute(`call aos_db.createAccount(?, ?);`, [email], [password]);
 }
 
 initialize();
