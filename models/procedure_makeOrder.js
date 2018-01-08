@@ -13,7 +13,7 @@ MakeOrder.prototype.initialize = async (() => {
                   CREATE PROCEDURE \`makeOrder\`(user INT,delivery INT)
                   BEGIN
                   	DECLARE \`OrderID\` INT;
-                      SET \`OrderID\` = (Select count(ID) from Orders)+1;
+                      SET \`OrderID\` = (Select max(ID) from Orders)+1;
 
                   	INSERT INTO \`Orders\` (ID,userID,createdAt,confirmed,deliveryID)
                   	value (OrderID,user,NOW(),false,delivery);
