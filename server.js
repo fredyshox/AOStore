@@ -1,5 +1,6 @@
 var express = require('express');
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var hbs = require('express-handlebars');
 var path = require('path');
 var port = 1337;
@@ -16,18 +17,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //additional setup
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 //api
-app.use('/users', require('./controllers/api/users'));
+app.use('/api/session', require('./controllers/api/session'));
 
 //routes
+app.use(require('./auth').authenticate);
 app.use('/cart', require('./controllers/routes/cart'));
 app.use('/account', require('./controllers/routes/account'));
-app.use('/session', require('./controllers/routes/session'));
+app.use('/login', require('./controllers/routes/login'));
 app.use('/products', require('./controllers/routes/products'));
 
 app.get('/', function(req, res) {
-  res.render('home', {categories: [{id:4, name:"Compyterrs"}]});
+  console.log(req.user);
+  res.render('home', {user: req.user, categories: [{id:4, name:"Compyterrs"}]});
 });
 
 

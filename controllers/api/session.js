@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt');
 const auth = require('../../auth');
 var config = require('../../config');
 
-router.get('/', (req, res, next) => {
-  res.render('login', {});
-});
+
+var signInSuccess = (req, res, next) => {
+  res.status(201).json(req.user);
+};
 
 router.post('/authenticate', (req, res, next) => {
   User.userWithEmail(req.body.email).then((results) => {
@@ -15,7 +16,7 @@ router.post('/authenticate', (req, res, next) => {
       if(!valid) {
         res.status(403).send("Invalid password");
       }
-
+      console.log(user);
       req.user = user;
       next()
     }).catch((err) => {
@@ -26,12 +27,21 @@ router.post('/authenticate', (req, res, next) => {
   });
 }, auth.generateToken, auth.applyToken, signInSuccess);
 
-var signInSuccess = (req, res, next) => {
-  res.redirect('/');
-};
 
 router.post('/register', (req, res, next) => {
-  //send token - route to home
-});
+  console.log('register');
+  bcrypt.hash(req.body.password, 10).then((hash) => {
+    User.createUser(req.body.email, hash).then((results) => {
+      req.user = {};
+      next();
+    }).catch((err) => {
+      console.log(err);
+      res.status(400).send("Cannot create user");
+    })
+  }).catch((err) => {
+    console.log(err);
+    res.status(403).send("Internal Error");
+  })
+}, signInSuccess);
 
-module.exports = router
+module.exports = router;

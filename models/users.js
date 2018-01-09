@@ -37,5 +37,15 @@ User.prototype.userWithEmail = (email) => {
                      WHERE \`Users\`.email = ?`, [email]);
 }
 
+User.prototype.createUser = function(email, password) {
+  console.log(email + " pass: " + password);
+  return this.create(email, password, 'user');
+}
+
+User.prototype.create = (email, password, permissions) => {
+  return db.execute(`INSERT INTO \`Users\` (email, password, permissions)
+                    VALUES (?, ?, ?)`, [email, password, permissions]);
+}
+
 
 module.exports = new User();
