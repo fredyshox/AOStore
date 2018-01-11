@@ -20,4 +20,15 @@ Deliverer.prototype.initialize = async (() => {
   console.log(name + " created")
 });
 
+Deliverer.prototype.deliverers = () => {
+  return db.execute(`SELECT *
+                    FROM \`Deliverer\`;`);
+};
+
+Deliverer.prototype.delivererWithID = (id) => {
+  return db.execute(`SELECT *
+                     FROM \`Deliverer\` d
+                     WHERE d.ID = ?`, [id]);
+};
+
 module.exports = new Deliverer();

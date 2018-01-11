@@ -16,7 +16,8 @@ User.prototype.initialize = async(() => {
             email varchar(128),
             password varchar(256),
             permissions enum('user', 'mod', 'admin'),
-            PRIMARY KEY(ID)
+            PRIMARY KEY(ID),
+            UNIQUE(email)
           );`));
   console.log(name + " created")
 });

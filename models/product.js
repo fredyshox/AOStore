@@ -45,5 +45,9 @@ Product.prototype.productWithID = (id) => {
                      WHERE p.ID = ?`, [id]);
 }
 
+Product.prototype.isAvailable = (id) => {
+  return db.execute('SELECT productIsAvailable(?);', [id]);
+}
+
 
 module.exports = new Product();

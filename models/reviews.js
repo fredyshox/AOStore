@@ -1,6 +1,8 @@
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
+var fkConstraint = require('../scripts/util').fkConstraint;
+
 const BaseModel = require('./baseModel');
 var name = 'Review';
 
@@ -24,16 +26,35 @@ Review.prototype.initialize = async (() => {
 })
 
 Review.prototype.addConstraints = async(() => {
-  await (db.query(`ALTER TABLE \`Reviews\`
-                  ADD CONSTRAINT \`Reviews_fk0\`
-                  FOREIGN KEY (\`userID\`) REFERENCES \`Users\`(\`ID\`);`));
+  await (fkConstraint('Reviews_fk0', `ALTER TABLE \`Reviews\`
+                                      ADD CONSTRAINT \`Reviews_fk0\`
+                                      FOREIGN KEY (\`userID\`)
+                                      REFERENCES \`Users\`(\`ID\`);`));
 
-  await (db.query(`ALTER TABLE \`Reviews\`
-                  ADD CONSTRAINT \`Reviews_fk1\`
-                  FOREIGN KEY (\`productID\`) REFERENCES \`Products\`(\`ID\`);`));
+  await (fkConstraint('Reviews_fk1', `ALTER TABLE \`Reviews\`
+                                      ADD CONSTRAINT \`Reviews_fk1\`
+                                      FOREIGN KEY (\`productID\`) 
+                                      REFERENCES \`Products\`(\`ID\`);`));
 
   console.log(name + " constraints added");
 })
+
+Review.prototype.reviews = (productID) => {
+  return db.execute(`SELECT *
+                    FROM \`Reviews\` r
+                    WHERE r.productID = ? ;`, [productID]);
+};
+
+Review.prototype.addReview = (userID, productID, stars, body) => {
+  return db.execute(`INSERT INTO \`Reviews\`(userID, productID, stars, body, createdAt)
+                    VALUES (?, ?, ?, ?, (SELECT NOW()));`, [userID, productID, stars, body]);
+}
+
+Review.prototype.removeReview = (id) => {
+  return db.execute(`DELETE FROM \`Reviews\` r
+                    WHERE r.ID = ? ;`, [id]);
+}
+
 
 
 module.exports = new Review();

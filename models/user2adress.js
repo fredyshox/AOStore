@@ -1,6 +1,8 @@
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
+var fkConstraint = require('../scripts/util').fkConstraint;
+
 const BaseModel = require('./baseModel');
 var name = 'User2Address';
 
@@ -28,12 +30,22 @@ User2Address.prototype.initialize = async (() => {
 })
 
 User2Address.prototype.addConstraints = async(() => {
-  await (db.query(`ALTER TABLE \`User2Address\`
-                  ADD CONSTRAINT \`User2Address_fk0\`
-                  FOREIGN KEY (\`userID\`) REFERENCES \`Users\`(\`ID\`);`));
+  await (fkConstraint('User2Address_fk0', `ALTER TABLE \`User2Address\`
+                                          ADD CONSTRAINT \`User2Address_fk0\`
+                                          FOREIGN KEY (\`userID\`)
+                                          REFERENCES \`Users\`(\`ID\`);`));
 
   console.log(name + " constraints added");
 });
 
+User2Address.prototype.addAddress = (uid, values) => {
+
+}
+
+User2Address.prototype.delete = (uid) => {
+  //TODO
+  return db.execute(`DELETE FROM \`User2Address\`
+                    WHERE \`User2Address\`.\`user\``)
+}
 
 module.exports = new User2Address();

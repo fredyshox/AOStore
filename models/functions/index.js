@@ -1,10 +1,10 @@
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(__filename);
-const dir = path.join(__dirname, 'sql');
 var execMySQL = require('../../util').execMySQL;
+const dir = path.join(__dirname, 'sql');
 
-var options = {cwd: dir, shell:true};
+var options = {cwd: dir, shell: true};
 
 fs.readdirSync(dir)
   .filter((file) => {
