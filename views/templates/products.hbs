@@ -4,9 +4,9 @@
       <h4>Here's what we found.</h4>
     </div>
     {{#each products as |product|}}
-      <div class="row">
+      <div class="row my-4">
         <div class="col-2 text-center">
-          {{#if products.img}}
+          {{#if product.img}}
             {{!-- temporary no image --}}
           {{else}}
             <img class="img-fluid" src="/no-image.png">
@@ -22,6 +22,7 @@
           </button>
         </div>
       </div>
+      <hr class="my-1">
     {{/each}}
   {{else}}
     <div class="text-center">

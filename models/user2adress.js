@@ -20,11 +20,11 @@ User2Address.prototype.initialize = async (() => {
               	\`phoneNo\` INT NOT NULL,
               	\`postalCode\` varchar(16) NOT NULL,
               	\`country\` varchar(32) NOT NULL,
-              	\`province\` varchar(32) NOT NULL,
               	\`city\` varchar(32) NOT NULL,
               	\`street\` varchar(32) NOT NULL,
               	\`buildingNo\` varchar(8) NOT NULL,
-              	\`flatNo\` INT NOT NULL
+                \`province\` varchar(32),
+              	\`flatNo\` INT
             );`));
   console.log(name + " created")
 })

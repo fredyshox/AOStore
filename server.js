@@ -24,15 +24,19 @@ app.use('/api/session', require('./controllers/api/session'));
 
 //routes
 app.use(require('./auth').authenticate);
-app.use('/cart', require('./controllers/routes/cart'));
-app.use('/account', require('./controllers/routes/account'));
 app.use('/login', require('./controllers/routes/login'));
 app.use('/products', require('./controllers/routes/products'));
+app.use('/contact', require('./controllers/routes/contact'));
 
+//home
 app.get('/', function(req, res) {
-  console.log(req.user);
   res.render('home', {user: req.user, categories: [{id:4, name:"Compyterrs"}]});
 });
+
+//restricted
+app.use(require('./auth').restrictAccess);
+app.use('/cart', require('./controllers/routes/cart'));
+app.use('/account', require('./controllers/routes/account'));
 
 
 app.listen(port, function() {

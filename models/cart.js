@@ -35,12 +35,10 @@ Cart.prototype.addConstraints = async(() => {
 });
 
 Cart.prototype.cartForUser = (id) => {
-  return db.execute(`SELECT c.quantity, p.ID, p.name, p.price, SUM(c.quantity * p.price)
+  return db.execute(`SELECT c.quantity, p.ID, p.name, p.price
                     FROM \`Cart\` c
                     JOIN \`Products\` p ON c.productID = p.ID
-                    GROUP BY c.userID
-                    WHERE c.userID = id;
-                    `);
+                    WHERE c.userID = ? ;`, [id]);
 };
 
 Cart.prototype.addItem = (userID, productID, quantity) => {

@@ -1,47 +1,47 @@
 <div class="container mt-4">
   <h3>Add Address</h3>
   <p>Add your shipping address to your account. You'll be able to use it on future shopping.</p>
-  <form class="mt-4">
+  <form class="mt-4" action="/account/addaddress" method="POST">
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label>First Name</label>
-        <input type="text" class="form-control" placeholder="First Name" required>
+        <input type="text" class="form-control" placeholder="First Name" name="firstName"required>
       </div>
       <div class="col-md-4 mb-3">
         <label>Last Name</label>
-        <input type="text" class="form-control" placeholder="Last Name" required>
+        <input type="text" class="form-control" placeholder="Last Name" name="lastName" required>
       </div>
       <div class="col-md-4 mb-3">
         <label>Phone Number</label>
-        <input type="text" class="form-control" placeholder="123456789" required>
+        <input type="text" class="form-control" placeholder="123456789" name="phoneNo"required>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label>Country</label>
-        <input type="text" class="form-control" placeholder="Country" required>
+        <input type="text" class="form-control" placeholder="Country" name="country" required>
       </div>
       <div class="col-md-4 mb-3">
         <label>City</label>
-        <input type="text" class="form-control" placeholder="City" required>
+        <input type="text" class="form-control" placeholder="City" name="city" required>
       </div>
       <div class="col-md-4 mb-3">
         <label>Postal Code</label>
-        <input type="text" class="form-control" placeholder="ZIP-ZI" required>
+        <input type="text" class="form-control" placeholder="ZIP-ZI" name="postalCode" required>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label>Street</label>
-        <input type="text" class="form-control" placeholder="Street 4" required>
+        <input type="text" class="form-control" placeholder="Street 4" name="street" required>
       </div>
       <div class="col-md-4 mb-3">
         <label>Flat Number*</label>
-        <input type="text" class="form-control" placeholder="X" required>
+        <input type="text" class="form-control" placeholder="X" name="flatNo">
       </div>
       <div class="col-md-4 mb-3">
         <label>Province*</label>
-        <input type="text" class="form-control" placeholder="Province" required>
+        <input type="text" class="form-control" placeholder="Province" name="province">
       </div>
     </div>
     <div class="text-center mt-4">

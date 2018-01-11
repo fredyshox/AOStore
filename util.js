@@ -29,4 +29,22 @@ var execMySQL = (file, options) => {
   }
 }
 
-module.exports = { printMethods, execMySQL };
+
+var errorHandler = (req, res) => {
+  req.template = {
+    name: 'error',
+    data: {}
+  }
+
+  render(req, res);
+}
+
+var render = (req, res) => {
+  var data = req.template.data;
+  var name = req.template.name;
+  data.user = req.user;
+
+  res.render(name, data);
+}
+
+module.exports = { printMethods, execMySQL, render, errorHandler};

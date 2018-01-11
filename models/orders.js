@@ -45,7 +45,7 @@ Order.prototype.calculateTotal = (orderID) => {
 }
 
 Order.prototype.orders = (userID) => {
-  return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name
+  return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name, calculateTotal(o.ID) as total
                     FROM \`Orders\` o
                     JOIN \`Deliverer\` d ON o.deliveryID = d.ID
                     WHERE o.userID = ? ;`, [userID]);

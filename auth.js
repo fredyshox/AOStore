@@ -32,23 +32,26 @@ module.exports.authenticate = (req, res, next) => {
   if (token) {
     jwt.verify(token, secret, function(err, decoded) {
       if (!err && decoded) {
-        console.log("token valid")
         req.user = decoded;
       }else {
         console.log("token not valid");
       }
       next();
-      //incompatible with api
-      // else {
-      //   res.status(401).send("Token not verified");
-      // }
     });
   } else {
-    console.log("No token");
     next();
     //res.status(403).send("Auth token not provided.");
   }
 };
+
+module.exports.restrictAccess = (req, res, next) => {
+  if (req.user === undefined) {
+    res.redirect('/login');
+  }else {
+    console.log("user allowed to see page");
+    next();
+  }
+}
 
 module.exports.clearAuth = (req, res, next) => {
   res.clearCookie(cookieName);
