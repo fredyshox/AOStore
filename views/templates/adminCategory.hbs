@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/backup">Backup</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/permissions">Permissions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Category</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/products">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/delivery">Delivery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders">Orders</a>
+    </li>
+  </ul>
+
+  <div>
+    <form class="mt-4" id='permissions-form'>
+      <div class="form-group">
+        <label>Put user ID and select permissions</label>
+          <div class="form-group">
+            <input type="id" class="form-control" placeholder="User ID" name="id">
+
+
+            <button type="submit" class="btn btn-primary mt-4 btn-block">Set permissions</button>
+          </div>
+        </form>
+      </div>
+
+    <div class="text-center">
+      <h3>You don't have permissions</h3>
+      <p>Page only available for administration</p>
+    </div>
+
+  </div>
+</div>
