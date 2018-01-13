@@ -21,22 +21,33 @@
   </ul>
 
   <div>
-    <form class="mt-4" id='permissions-form'>
-      <div class="form-group">
-        <label>Put user ID and select permissions</label>
-          <div class="form-group">
-            <input type="id" class="form-control" placeholder="User ID" name="id">
+    <form class="mt-4" id='add-category-form'>
+      <label>Add new category</label>
+      <input type="id" class="form-control" placeholder="New Category" name="newCategory">
+      <span class="input-group-btn">
+            <button type="submit" class="input-group-btn">Add category</button>
+          </span>
+    </form>
 
+    <form class="mt-4" id='rename-category-form'>
+      <label>Rename category</label>
+      <input type="id" class="form-control" placeholder="Old Category" name="oldCategory">
+      <input type="id" class="form-control" placeholder="New Category" name="newCategory">
+      <span class="input-group-btn">
+          <button type="submit" class="input-group-btn">Rename category</button>
+        </span>
+    </form>
 
-            <button type="submit" class="btn btn-primary mt-4 btn-block">Set permissions</button>
-          </div>
-        </form>
-      </div>
+    <form class="mt-4" id='delete-category-form'>
+      <label>Remove category</label><br>
+      <input type="id" placeholder="Old Category" name="oldCategory">
+      <button type="submit" class="input-group-btn">DELETE CATEGORY</button>
+    </form>
 
-    <div class="text-center">
+    <!-- <div class="text-center">
       <h3>You don't have permissions</h3>
       <p>Page only available for administration</p>
-    </div>
+    </div> -->
 
   </div>
 </div>
