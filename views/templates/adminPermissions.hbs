@@ -19,26 +19,34 @@
       <a class="nav-link" href="/admin/orders">Orders</a>
     </li>
   </ul>
-  {{#if permissions}}
-    <div>
-      <form class="mt-4" id='permissions-form'>
-        <div class="form-group">
-          <label>Put user ID and select permissions</label>
+  <!-- TODO add check permission -->
+  <div>
+    <form class="mt-4" id='permissions-form'>
+      <div class="form-group">
+        <label>Put user ID and select permissions</label>
 
-          <div class="form-group">
-            <input type="id" class="form-control" placeholder="User ID" name="id">
-            <input type="radio" name="permissions" value="0" checked> User<br>
-            <input type="radio" name="permissions" value="1"> Moderator<br>
-            <input type="radio" name="permissions" value="2"> Admin
+        <div class="form-group">
+          <input type="id" class="form-control" placeholder="User ID" name="id">
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary">
+              <input type="radio" name="opt" value=0> User
+            </label>
+              <label class="btn btn-primary">
+              <input type="radio" name="opt" value=1> Moderator
+            </label>
+              <label class="btn btn-primary">
+              <input type="radio" name="opt" value=2> Admin
+            </label>
           </div>
           <button type="submit" class="btn btn-primary mt-4 btn-block">Set permissions</button>
         </div>
-      </form>
+    </form>
     </div>
-  {{else}}
+
+
     <div class="text-center">
       <h3>You don't have permissions</h3>
       <p>Page only available for administration</p>
     </div>
-  {{/if}}
-</div>
+
+  </div>
