@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Backup</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/permissions">Permissions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/category">Category</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/products">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/delivery">Delivery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders">Orders</a>
+    </li>
+  </ul>
+
+  {{#if permissions}}
+    <div class="row">
+      <div class="col-sm">
+      <div class="col-sm offset-md-1">
+        <form class="mt-4" id="register-form">
+          <button type="submit" class="btn btn-primary mt-4 btn-block">Create a backup</button>
+          <button type="submit" class="btn btn-primary mt-4 btn-block">Use backup</button>
+        </form>
+      </div>
+    </div>
+  {{else}}
+    <div class="text-center">
+      <h3>You don't have permissions</h3>
+      <p>Page only available for administration</p>
+    </div>
+  {{/if}}
+</div>
