@@ -16,10 +16,12 @@
           <a class="text-primary" href="/products/{{product.ID}}/"><h4>{{product.name}}</h4></a>
           <p><span class="text-muted">Availability: </span>{{product.quantity}} items</p>
           <h5>{{product.price}} EUR</h5>
-          <button type="button" class="btn btn-primary mt-1 px-3">
-            Add to cart
-            <i class="fa fa-cart-arrow-down fa-lg"></i>
-          </button>
+          <form method="post" action="/products/{{product.ID}}">
+            <button type="submit" class="btn btn-primary mt-1 px-3" name="quantity" value="1">
+              Add to cart
+              <i class="fa fa-cart-arrow-down fa-lg"></i>
+            </button>
+          </form>
         </div>
       </div>
       <hr class="my-1">

@@ -3,7 +3,9 @@ const Product = require('../../models').Product;
 const Cart = require('../../models').Cart;
 
 var render = require('../../util').render;
-var errorHandler = require('../../util').errorHandler;
+
+//auth
+var restrictAccess = require('../../auth').restrictAccess;
 
 router.get('/', (req, res, next) => {
   var lastRow = req.query.lastRow;
@@ -19,7 +21,7 @@ router.get('/', (req, res, next) => {
     next();
   }).catch((err) => {
     console.log(err);
-    errorHandler(req, res);
+    res.redirect('/error');
   });
 }, render);
 
@@ -29,22 +31,24 @@ router.get('/:productID', (req, res, next) => {
     var product = fields[0][0];
     req.template = {
       name: 'singleProduct',
-      product: product
+      data: {
+        product: product
+      }
     }
     next();
   }).catch((err) => {
     console.log(err);
-    errorHandler(req, res);
+    res.redirect('/error');
   })
 }, render);
 
-router.post('/:productID', (req, res, next) => {
+router.post('/:productID', restrictAccess, (req, res, next) => {
   var productID = req.params.productID;
   Cart.addItem(req.user.id, productID, req.body.quantity).then((fields) => {
-    //success
+    res.redirect('/cart')
   }).catch((err) => {
     console.log(err);
-
+    res.redirect('/error');
   })
 });
 

@@ -8,7 +8,10 @@ var port = 1337;
 var app = express();
 
 //view engine setup
-app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'main', layoutsDir: path.join(__dirname, 'views', 'layouts')}));
+app.engine('hbs', hbs({extname: 'hbs',
+                       defaultLayout: 'main',
+                       layoutsDir: path.join(__dirname, 'views', 'layouts')
+                       }));
 app.set('views', path.join(__dirname, 'views', 'templates'));
 app.set('view engine', 'hbs');
 
@@ -33,10 +36,17 @@ app.get('/', function(req, res) {
   res.render('home', {user: req.user, categories: [{id:4, name:"Compyterrs"}]});
 });
 
+//error
+app.get('/error', require('./util').errorHandler);
+
 //restricted
 app.use(require('./auth').restrictAccess);
 app.use('/cart', require('./controllers/routes/cart'));
 app.use('/account', require('./controllers/routes/account'));
+
+//restricted api
+app.use(require('./auth').restrictAccessApi);
+app.use('/api/address', require('./controllers/api/address'));
 
 
 app.listen(port, function() {

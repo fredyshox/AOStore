@@ -1,10 +1,15 @@
 var router = require('express').Router();
 const Order = require('../../models').Order;
+const User2Address = require('../../models').User2Address;
 
 var render = require('../../util').render;
-var errorHandler = require('../../util').errorHandler;
+
 
 router.get('/', (req, res, next) => {
+  res.redirect('/account/orders');
+})
+
+router.get('/orders', (req, res, next) => {
   Order.orders(req.user.id).then((fields) => {
     var orders = fields[0];
     req.template = {
@@ -17,19 +22,47 @@ router.get('/', (req, res, next) => {
     next();
   }).catch((err) => {
     console.log(err);
-    errorHandler(req, res);
+    res.redirect('/error');
   });
 }, render);
 
-//TODO
+
 router.get('/data', (req, res, next) => {
-  req.template = {
-    name:'userdata',
-    data: {}
+  User2Address.addresses(req.user.id).then((fields) => {
+    var addresses = fields[0];
+    req.template = {
+      name:'userdata',
+      data: {
+        addresses: boxTheAddresses(addresses)
+      }
+    }
+    
+    next();
+  }).catch((err) => {
+    console.log(err);
+    res.redirect('/error');
+  });
+}, render);
+
+var boxTheAddresses = (addresses) => {
+  var index = 0;
+  var result = [];
+  var box;
+  var address;
+
+  while(addresses[index]) {
+    address = addresses[index];
+    if(index % 3 === 0) {
+      box = [];
+      result.push(box);
+    }
+
+    box.push(address);
+    index++;
   }
 
-  next();
-}, render);
+  return result;
+}
 
 router.get('/addaddress', (req, res, next) => {
   req.template = {
@@ -40,8 +73,5 @@ router.get('/addaddress', (req, res, next) => {
   next();
 }, render);
 
-router.post('/addaddress', (req, res, next) => {
-  errorHandler(req, res);
-});
 
 module.exports = router;

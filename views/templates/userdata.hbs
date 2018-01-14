@@ -1,5 +1,50 @@
 <div class="container mt-4">
-  <div class="card-deck">
+{{#if addresses}}
+  {{#each addresses}}
+    <div class="card-deck">
+      {{#each this as |address addressID|}}
+        <div class="card col-4 mx-auto">
+          <div class="card-body">
+            <h5 class="card-title">Address {{addressID}}</h5>
+            <p class="card-text">
+            {{address.firstName}} {{address.lastName}}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <b>Phone number</b><br></br>
+              {{address.phoneNo}}
+            </li>
+            <li class="list-group-item">
+              <b>Address</b><br></br>
+              {{address.street}} {{address.buildingNo}}
+              {{#if address.flatNo}}
+                / {{address.flatNo}}
+              {{/if}}
+              <br></br>
+              {{address.postalCode}}, {{address.city}}, {{address.country}}
+              {{#if address.province}}
+                , {{address.province}}
+              {{/if}}
+            </li>
+            <li class="list-group-item text-center">
+              <button id="rm{{address.ID}}" data-address="{{address.ID}}" class="btn btn-danger" style="width:4rem">
+                <i class="fa fa-minus"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+{{else}}
+  <div class="text-center">
+    <h3>No shipping data</h3>
+    <p>Looks like you haven't added any shipping data. You can add it now.</p>
+  </div>
+{{/if}}
+
+  {{!-- <div class="card-deck">
     <div class="card col-4">
       <div class="card-body">
         <h5 class="card-title">Address {{index}}</h5>
@@ -25,19 +70,7 @@
         </li>
       </ul>
     </div>
-    <div class="card col-4">
-      <div class="card-body">
-        <h5 class="card-title">Title</h5>
-        <p class="card-text">Address</p>
-      </div>
-    </div>
-    <div class="card col-4">
-      <div class="card-body">
-        <h5 class="card-title">Title</h5>
-        <p class="card-text">Address</p>
-      </div>
-    </div>
-  </div>
+  </div> --}}
   <div class="mx-auto text-center mt-4">
     <a href='/account/addaddress' style="width: 4rem" class="btn btn-primary ">
       <i class="fa fa-plus"></i>

@@ -1,8 +1,8 @@
 var router = require('express').Router();
 const Cart = require('../../models').Cart;
 const Order = require('../../models').Order;
+
 var render = require('../../util').render;
-var errorHandler = require('../../util').errorHandler;
 
 
 router.get('/', (req, res, next) => {
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
     next();
   }).catch((err) => {
     console.log(err);
-    errorHandler(req, res);
+    res.redirect('/error');
   })
 }, render);
 
@@ -32,7 +32,7 @@ router.post('/', (req, res, next) => {
     }
     next()
   }).catch((err) => {
-    errorHandler(req, res);
+    res.redirect('/error');
   });
 }, render);
 

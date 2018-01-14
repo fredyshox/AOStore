@@ -29,6 +29,7 @@ var execMySQL = (file, options) => {
   }
 }
 
+// express handlers
 
 var errorHandler = (req, res) => {
   req.template = {
@@ -39,10 +40,10 @@ var errorHandler = (req, res) => {
   render(req, res);
 }
 
-var render = (req, res) => {
+var render = (req, res, next) => {
   var data = req.template.data;
   var name = req.template.name;
-  data.user = req.user;
+  data.user = req.user
 
   res.render(name, data);
 }

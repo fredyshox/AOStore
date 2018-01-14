@@ -44,6 +44,15 @@ module.exports.authenticate = (req, res, next) => {
   }
 };
 
+module.exports.restrictAccessApi = (req, res, next) => {
+  if (req.user === undefined) {
+    res.status(401).send("Unauthorized");
+  }else {
+    console.log("user allowed to see page");
+    next();
+  }
+}
+
 module.exports.restrictAccess = (req, res, next) => {
   if (req.user === undefined) {
     res.redirect('/login');
