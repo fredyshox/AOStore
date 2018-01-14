@@ -23,7 +23,7 @@
   <div>
     <form class="mt-4" id='add-category-form'>
       <label>Add new category</label>
-      <input type="id" class="form-control" placeholder="New Category" name="newCategory">
+      <input type="id" class="form-control" required placeholder="New Category" name="newCategory">
       <span class="input-group-btn">
             <button type="submit" class="btn btn-primary">Add category</button>
           </span>
@@ -31,8 +31,8 @@
 
     <form class="mt-4" id='rename-category-form'>
       <label>Rename category</label>
-      <input type="id" class="form-control" placeholder="Old Category" name="oldCategory">
-      <input type="id" class="form-control" placeholder="New Category" name="newCategory">
+      <input type="id" class="form-control" required placeholder="Old Category" name="oldCategory">
+      <input type="id" class="form-control" required placeholder="New Category" name="newCategory">
       <span class="input-group-btn">
           <button type="submit" class="btn btn-primary">Rename category</button>
         </span>
@@ -40,7 +40,7 @@
 
     <form class="mt-4" id='delete-category-form'>
       <label>Remove category</label><br>
-      <input type="id" placeholder="Old Category" name="oldCategory">
+      <input type="id" required placeholder="Old Category" name="oldCategory">
       <button type="submit" class="btn btn-primary">DELETE CATEGORY</button>
     </form>
 
