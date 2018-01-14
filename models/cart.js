@@ -42,8 +42,15 @@ Cart.prototype.cartForUser = (id) => {
 };
 
 Cart.prototype.addItem = (userID, productID, quantity) => {
-  return db.execute(`INSERT INTO \`Cart\`(productID, userID, quantity)
-                     VALUES (?, ?, ?);`, [productID, userID, 1]);
+  var obj = {
+    userID: userID,
+    productID: productID,
+    quantity: quantity
+  }
+
+  return db.execute(`INSERT INTO \`Cart\`
+                     SET ?
+                     ON DUPLICATE KEY UPDATE quantity=? ;`, [obj, quantity]);
 };
 
 Cart.prototype.deleteItem = (userID, productID) => {
