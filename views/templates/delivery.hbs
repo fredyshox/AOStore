@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2>
+    Choose delivery
+    <i class="fa fa-truck"></i>
+  </h2>
+  <form>
+    <h5>Order id: <b>#{{id}}</b></h5>
+    <p class="mt-4">Available delivery options:</p>
+    {{#each deliverers}}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="delivery{{this.ID}}">
+        <label class="form-check-label" for="delivery{{this.ID}}">
+          <b>{{this.name}}</b> - {{this.price}} EUR
+        </label>
+      </div>
+    {{/each}}
+    <h5 class="mt-4">Shipping address</h5>
+    {{#if addresses}}
+    <div class="form-group">
+      <label for="addressSelect">Choose shipping address:</label>
+      <select class="form-control" id="addressSelect">
+        {{#each addresses}}
+          <option>{{this.firstName}} {{this.lastName}}, {{this.phoneNo}}, {{this.street}} {{this.buildingNo}}, {{this.country}} {{this.postalCode}}</option>
+        {{/each}}
+      </select>
+    </div>
+    {{else}}
+      <p>
+        <b>
+          Looks like u haven't added any shipping info.
+          <a href="#">Add shipping info.</a>
+        </b>
+      </p>
+    {{/if}}
+    <p class="text-center mt-4">
+      <b>Order progress</b>
+    </p>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax=100>
+        50 %
+      </div>
+    </div>
+    <a href="/" class="btn btn-secondary pull-left mt-4">Go back</a>
+    <button type="button" class="btn btn-success pull-right mt-4">Order now</button>
+  </form>
+</div>
