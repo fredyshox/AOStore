@@ -48,16 +48,15 @@ Cart.prototype.addItem = (userID, productID, quantity) => {
     quantity: quantity
   }
 
-  return db.execute(`INSERT INTO \`Cart\`
-                     SET ?
-                     ON DUPLICATE KEY UPDATE quantity=? ;`, [obj, quantity]);
+  return db.execute(`INSERT INTO \`Cart\`(\`productID\`,\`userID\`,\`quantity\`)
+                     VALUES (?, ?, ?)
+                     ON DUPLICATE KEY UPDATE \`quantity\`=\`quantity\`+1 ;`,
+                     [productID, userID, quantity]);
 };
 
 Cart.prototype.deleteItem = (userID, productID) => {
   return db.execute(`DELETE FROM \`Cart\` c
                     WHERE c.userID = ? AND c.productID = ? ;`, [userID, productID]);
 }
-
-//TODO update
 
 module.exports = new Cart();

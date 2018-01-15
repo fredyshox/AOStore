@@ -3,12 +3,12 @@
     Choose delivery
     <i class="fa fa-truck"></i>
   </h2>
-  <form>
+  <form id="delivery-form">
     <h5>Order id: <b>#{{id}}</b></h5>
     <p class="mt-4">Available delivery options:</p>
     {{#each deliverers}}
       <div class="form-check">
-        <input class="form-check-input" type="radio" id="delivery{{this.ID}}">
+        <input class="form-check-input" name="deliveryID" value="{{this.ID}}" type="radio" id="delivery{{this.ID}}" required>
         <label class="form-check-label" for="delivery{{this.ID}}">
           <b>{{this.name}}</b> - {{this.price}} EUR
         </label>
@@ -18,9 +18,9 @@
     {{#if addresses}}
     <div class="form-group">
       <label for="addressSelect">Choose shipping address:</label>
-      <select class="form-control" id="addressSelect">
+      <select class="form-control" id="addressSelect" name="addressID" form="delivery-form">
         {{#each addresses}}
-          <option>{{this.firstName}} {{this.lastName}}, {{this.phoneNo}}, {{this.street}} {{this.buildingNo}}, {{this.country}} {{this.postalCode}}</option>
+          <option value="{{this.ID}}">{{this.firstName}} {{this.lastName}}, {{this.phoneNo}}, {{this.street}} {{this.buildingNo}}, {{this.country}} {{this.postalCode}}</option>
         {{/each}}
       </select>
     </div>
@@ -41,6 +41,6 @@
       </div>
     </div>
     <a href="/" class="btn btn-secondary pull-left mt-4">Go back</a>
-    <button type="button" class="btn btn-success pull-right mt-4">Order now</button>
+    <button type="submit" class="btn btn-success pull-right mt-4">Order now</button>
   </form>
 </div>

@@ -24,7 +24,7 @@
       <tbody>
         {{#each orders}}
           <tr>
-            <td>{{this.id}}</td>
+            <td>{{this.ID}}</td>
             <td>{{this.createdAt}}</td>
             <td>
               {{#if this.confirmed}}
@@ -33,7 +33,7 @@
                 Waiting for confirmation
               {{/if}}
             </td>
-            <td>{{this.delivery.name}}</td>
+            <td>{{this.deliveryName}}</td>
             <td>{{this.total}}</td>
           </tr>
         {{/each}}

@@ -37,7 +37,7 @@ Order.prototype.addConstraints = async(() => {
 });
 
 Order.prototype.makeOrder = (userID, deliveryID) => {
-  return db.execute('CALL makeOrder(?, ?);', [userID. deliveryID]);
+  return db.execute('CALL makeOrder(?, ?);', [userID, deliveryID]);
 }
 
 Order.prototype.calculateTotal = (orderID) => {
@@ -45,7 +45,7 @@ Order.prototype.calculateTotal = (orderID) => {
 }
 
 Order.prototype.orders = (userID) => {
-  return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name, calculateTotal(o.ID) as total
+  return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name as deliveryName, calculateTotal(o.ID) as total
                     FROM \`Orders\` o
                     JOIN \`Deliverer\` d ON o.deliveryID = d.ID
                     WHERE o.userID = ? ;`, [userID]);

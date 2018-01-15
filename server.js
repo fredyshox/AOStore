@@ -42,11 +42,13 @@ app.get('/error', require('./util').errorHandler);
 //restricted
 app.use(require('./auth').restrictAccess);
 app.use('/cart', require('./controllers/routes/cart'));
+app.use('/order', require('./controllers/routes/orders'));
 app.use('/account', require('./controllers/routes/account'));
 
 //restricted api
 app.use(require('./auth').restrictAccessApi);
 app.use('/api/address', require('./controllers/api/address'));
+app.use('/api/orders', require('./controllers/api/orders'));
 
 
 app.listen(port, function() {

@@ -44,7 +44,8 @@ router.get('/:productID', (req, res, next) => {
 
 router.post('/:productID', restrictAccess, (req, res, next) => {
   var productID = req.params.productID;
-  Cart.addItem(req.user.id, productID, req.body.quantity).then((fields) => {
+  //quantity in body
+  Cart.addItem(req.user.id, productID, 1).then((fields) => {
     res.redirect('/cart')
   }).catch((err) => {
     console.log(err);

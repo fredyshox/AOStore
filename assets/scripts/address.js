@@ -1,7 +1,7 @@
 import * as util from './util'
 
-var rmAddrApi = '/api/address/rm';
-var addAddrApi = '/api/address/add';
+var rmAddrApiUrl = '/api/address/rm';
+var addAddrApiUrl = '/api/address/add';
 
 $(document).ready(function() {
   $('#address-form').submit(function(e) {
@@ -30,48 +30,27 @@ $(document).ready(function() {
       var addrID = element.data("address");
       console.log(addrID);
       if (addrID !== undefined) {
-        rmAddressWithID(addrID);
+        rmAddress(util.getUrl(rmAddrApiUrl), {
+          id: addrID
+        });
       }
     });
   })
 });
 
-function rmAddressWithID(id) {
-  var data = {
-    id: id
-  }
-  return rmAddress(util.getUrl(rmAddrApi), data);
-}
-
 function rmAddress(url, data) {
-  return $.ajax({
-    url: url,
-    async: false,
-    contentType:'application/json',
-    data: JSON.stringify(data),
-    type: 'POST',
-    success: function(res){
-      location.href = util.getUrl('/account/data');
-    },
-    error: function() {
-      location.href = util.getUrl('/error');
-    }
+  return util.httpPost(url, data, function(res) {
+    location.href = util.getUrl('/account/data');
+  }, function() {
+    location.href = util.getUrl('/error');
   })
 }
 
-function addAddress(url, data, onSuccess, onError) {
-  return $.ajax({
-      url: url,
-      async: false,
-      contentType:'application/json',
-      data: JSON.stringify(data),
-      type: 'POST',
-      success: function() {
-        location.href = util.getUrl('/account/data');
-      },
-      error: function() {
-        var span = $('#info-span');
-        span.text('Something went wrong. Try again.');
-      }
+function addAddress(url, data) {
+  return httpPost(url, data, function(res) {
+    location.href = util.getUrl('/account/data');
+  }, function(err) {
+    var span = $('#info-span');
+    span.text('Something went wrong. Try again.');
   });
 }
