@@ -1,0 +1,55 @@
+<div class="container mt-2">
+  <h2 class="my-3">{{product.name}}</h2>
+  <div class="row" style="max-height: 400px">
+    <div class="col-9 text-center">
+      {{#if product.img}}
+        {{!-- temporary no image --}}
+      {{else}}
+        <img class="img-fluid" src="/no-image.png">
+      {{/if}}
+    </div>
+    <div class="col-3 bg-light rounded p-3">
+      <div class="row">
+        <p class="col-4">Category:</p>
+        <h5 class="col-8 text-right">{{product.category.name}}</h5>
+      </div>
+      <div class="row">
+        <p class="col-4">Price:</p>
+        <h5 class="col-8 text-right">{{product.price}} EUR</h5>
+      </div>
+      <div class="row">
+        <p class="col-sm">Availability:</p>
+        {{#if product.quantity}}
+          <h5 class="col-sm text-right text-success">Available</h5>
+        {{else}}
+          <h5 class="col-sm text-right text-danger">Not available</h5>
+        {{/if}}
+      </div>
+      <form  action="/products/{{product.ID}}" method="post">
+        <div class="input-group mx-auto my-3" style="width:8rem">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default btn-number border"  data-type="minus" data-field="">
+              <span class="fa fa-minus"></span>
+            </button>
+          </span>
+          <input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="{{product.quantity}}">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default border">
+              <span class="fa fa-plus"></span>
+            </button>
+          </span>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary mt-1 px-3">
+            Add to cart
+            <i class="fa fa-cart-arrow-down fa-lg"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr class="my-4">
+  <h2 class="my-3">Description</h2>
+  <p>{{product.description}}</p>
+</div>

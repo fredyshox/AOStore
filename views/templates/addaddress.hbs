@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <h3>Add Address</h3>
+  <p>Add your shipping address to your account. You'll be able to use it on future shopping.</p>
+  <form class="mt-4" action="/api/address/add" method="POST" id="address-form">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label>First Name</label>
+        <input type="text" class="form-control" placeholder="First Name" name="firstName" id="firstName" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Last Name</label>
+        <input type="text" class="form-control" placeholder="Last Name" name="lastName" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" placeholder="123456789" name="phoneNo"required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label>Country</label>
+        <input type="text" class="form-control" placeholder="Country" name="country" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>City</label>
+        <input type="text" class="form-control" placeholder="City" name="city" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Postal Code</label>
+        <input type="text" class="form-control" placeholder="ZIP-ZI" name="postalCode" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label>Street</label>
+        <input type="text" class="form-control" placeholder="Street" name="street" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Building Number</label>
+        <input type="text" class="form-control" placeholder="4" name="buildingNo" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Flat Number*</label>
+        <input type="text" class="form-control" placeholder="X" name="flatNo">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Province*</label>
+        <input type="text" class="form-control" placeholder="Province" name="province">
+      </div>
+    </div>
+    <div class="text-center text-danger">
+      <b>
+        <span id="info-span"></span>
+      </b>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary text-center" style="width:4rem">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,9 +1,11 @@
 {
   "db": {
     "user":"root",
-    "password": "ppsswwdd",
+    "password": "eQw-38s-3dm-2oS",
     "host":"localhost",
     "database":"aos_db",
-    "connectionLimit": 100
-  }
+    "connectionLimit": 100,
+    "charset":"utf8_general_ci"
+  },
+  "secret":"mysecretsecret"
 }

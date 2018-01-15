@@ -1,2 +1,10 @@
-<h1>{{ title }}</h1>
-<p>Hello, {{ title }}!</p>
+<ul class="nav justify-content-center bg-light">
+  {{#each categories as |category|}}
+    <li class="nav-item">
+      <a class="nav-link" href="/category/{{category.id}}">{{category.name}}</a>
+    </li>
+  {{/each}}
+</ul>
+<div class="container mt-4">
+  <h2>Hello World</h2>
+</div>

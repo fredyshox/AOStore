@@ -1,0 +1,26 @@
+var router = require('express').Router();
+const User2Address = require('../../models').User2Address;
+
+//api
+router.post('/add', (req, res, next) => {
+  var bodyValues = Object.assign({}, req.body);
+  User2Address.addAddress(req.user.id, bodyValues).then((fields) => {
+    res.status(201).send('Created');
+  }).catch((err) => {
+    console.log(err);
+    res.status(400).send(err);
+  })
+});
+
+//api
+router.post('/rm', (req, res, next) => {
+  var id = req.body.id;
+  User2Address.delete(id, req.user.id).then((fields) => {
+    res.status(201).send('Removed');
+  }).catch((err) => {
+    console.log(err);
+    res.status(400).send(err);
+  });
+});
+
+module.exports = router;

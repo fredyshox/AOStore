@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Orders</a>
+      <a class="nav-link active" href="/account/orders">Orders</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/account/data">Shipping data</a>
@@ -9,34 +9,41 @@
   </ul>
 
   {{!-- orders tab --}}
-  <h3 class="mt-4">Your Orders</h3>
-  <table class="table mt-4">
-    <thead>
-      <tr>
-        <th scope="col">Order ID</th>
-        <th scope="col">Created date</th>
-        <th scope="col">Status</th>
-        <th scope="col">Delivery</th>
-        <th scope="col">Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each orders}}
+  {{#if orders}}
+    <h3 class="mt-4">Your Orders</h3>
+    <table class="table mt-4">
+      <thead>
         <tr>
-          <td>{{this.id}}</td>
-          <td>{{this.createdAt}}</td>
-          <td>
-            {{#if this.confirmed}}
-              Confirmed
-            {{else}}
-              Waiting for confirmation
-            {{/if}}
-          </td>
-          <td>{{this.delivery.name}}</td>
-          <td>{{this.total}}</td>
+          <th scope="col">Order ID</th>
+          <th scope="col">Created date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Delivery</th>
+          <th scope="col">Value</th>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each orders}}
+          <tr>
+            <td>{{this.ID}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+              {{#if this.confirmed}}
+                Confirmed
+              {{else}}
+                Waiting for confirmation
+              {{/if}}
+            </td>
+            <td>{{this.deliveryName}}</td>
+            <td>{{this.total}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <div class="text-center mt-4">
+      <h3>Orders not found</h3>
+      <p>Looks like you haven't ordered anything yet.</p>
+    </div>
+  {{/if}}
 
 </div>

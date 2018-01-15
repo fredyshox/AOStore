@@ -1,15 +1,17 @@
 var express = require('express');
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var hbs = require('express-handlebars');
 var path = require('path');
 var port = 1337;
 
 var app = express();
 
-var db = require("./db");
-
 //view engine setup
-app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'main', layoutsDir: path.join(__dirname, 'views', 'layouts')}));
+app.engine('hbs', hbs({extname: 'hbs',
+                       defaultLayout: 'main',
+                       layoutsDir: path.join(__dirname, 'views', 'layouts')
+                       }));
 app.set('views', path.join(__dirname, 'views', 'templates'));
 app.set('view engine', 'hbs');
 
@@ -18,17 +20,36 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //additional setup
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 //api
-app.use('/users', require('./controllers/api/users'));
+app.use('/api/session', require('./controllers/api/session'));
 
 //routes
+app.use(require('./auth').authenticate);
+app.use('/login', require('./controllers/routes/login'));
+app.use('/products', require('./controllers/routes/products'));
+app.use('/contact', require('./controllers/routes/contact'));
+
+//home
+app.get('/', function(req, res) {
+  res.render('home', {user: req.user, categories: [{id:4, name:"Compyterrs"}]});
+});
+
+//error
+app.get('/error', require('./util').errorHandler);
+
+//restricted
+app.use(require('./auth').restrictAccess);
 app.use('/cart', require('./controllers/routes/cart'));
+app.use('/order', require('./controllers/routes/orders'));
 app.use('/account', require('./controllers/routes/account'));
 
-app.get('/', function(req, res) {
-  res.render('account', {items: [{name: "Mac", price: 9999, quantity: 2}]});
-});
+//restricted api
+app.use(require('./auth').restrictAccessApi);
+app.use('/api/address', require('./controllers/api/address'));
+app.use('/api/orders', require('./controllers/api/orders'));
+
 
 app.listen(port, function() {
   console.log("Server is running on port " + port);

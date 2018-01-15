@@ -1,12 +1,13 @@
 var jwt = require('jsonwebtoken');
-var secret = "ddddd";
+var secret = require('./config').secret;
+var cookieName = 'token'
 
 var expireTime = 3600 * 24 * 7;
 
 var createToken = (auth) => {
   var token = jwt.sign({
-    id: auth.id,
-    email: auth.email
+    id: auth.ID,
+    permissions: auth.permissions
   },secret, {
     expiresIn: expireTime
   })
@@ -14,29 +15,54 @@ var createToken = (auth) => {
   return token;
 };
 
-module.exports.generateToken = function(req, res, next) {
+module.exports.generateToken = (req, res, next) => {
   req.token = createToken(req.user);
   next();
 };
 
-module.exports.sendToken = function(req, res) {
-  res.setHeader('x-auth', req.token);
-  //page rendering
-  res.status(200).json(req.user);
+module.exports.applyToken = function(req, res, next) {
+  res.cookie(cookieName, req.token);
+  next()
 };
 
 
-module.exports.authenticate = function (req, res, next) {
-  if (req.headers["x-auth"]) {
-    jwt.verify(req.headers["x-auth"], config.secret, function(err, decoded) {
+module.exports.authenticate = (req, res, next) => {
+  var token = req.cookies[cookieName];
+  console.log("token: " + token);
+  if (token) {
+    jwt.verify(token, secret, function(err, decoded) {
       if (!err && decoded) {
-        req.auth = decoded;
-        next();
+        req.user = decoded;
       }else {
-        res.send(401);
+        console.log("token not valid");
       }
+      next();
     });
   } else {
-    res.status(403).send("Auth token not provided.");
+    next();
+    //res.status(403).send("Auth token not provided.");
   }
+};
+
+module.exports.restrictAccessApi = (req, res, next) => {
+  if (req.user === undefined) {
+    res.status(401).send("Unauthorized");
+  }else {
+    console.log("user allowed to see page");
+    next();
+  }
+}
+
+module.exports.restrictAccess = (req, res, next) => {
+  if (req.user === undefined) {
+    res.redirect('/login');
+  }else {
+    console.log("user allowed to see page");
+    next();
+  }
+}
+
+module.exports.clearAuth = (req, res, next) => {
+  res.clearCookie(cookieName);
+  next();
 };
