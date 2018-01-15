@@ -32,9 +32,7 @@ app.use('/products', require('./controllers/routes/products'));
 app.use('/contact', require('./controllers/routes/contact'));
 
 //home
-app.get('/', function(req, res) {
-  res.render('home', {user: req.user, categories: [{id:4, name:"Compyterrs"}]});
-});
+app.use('/', require('./controllers/routes/home'));
 
 //error
 app.get('/error', require('./util').errorHandler);

@@ -25,15 +25,11 @@ Category.prototype.initialize = async (() => {
   console.log(name + " created")
 })
 
-//TODO
-Category.prototype.categories = (children) => {
-  if (children) {
-    return db.execute(`SELECT *
-                      FROM \`ProductCategory\` cat
-                      WHERE cat.\`parentID\` = NULL;`);
-  }else {
-
-  }
+Category.prototype.categories = () => {
+  return db.execute(`SELECT p.\`ID\`, p.\`name\`, c.\`ID\` as childID, c.\`name\` as childName
+                    FROM \`ProductCategory\` p
+                    LEFT JOIN \`ProductCategory\` c ON c.parentID = p.ID
+                    WHERE p.\`parentID\` IS NULL;`);
 };
 
 Category.prototype.categoryWithID = (id) => {
