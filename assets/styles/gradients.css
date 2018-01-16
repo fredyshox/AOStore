@@ -1,0 +1,31 @@
+.grad-0 {
+  background: linear-gradient(30deg, #CA3058, #FF9948);
+  background: -webkit-linear-gradient(30deg, #CA3058, #FF9948);
+}
+
+.grad-1{
+  background: linear-gradient(30deg, #FF8D47, #FFDA2E);
+  background: -webkit-linear-gradient(30deg, #FF8D47, #FFDA2E);
+}
+
+.grad-2{
+  background: linear-gradient(30deg, #2BD563, #0082D5);
+  background: -webkit-linear-gradient(30deg, #2BD563, #0082D5);
+}
+
+.grad-3{
+  background: linear-gradient(30deg, #0058A1, #007AC5);
+  background: -webkit-linear-gradient(30deg, #0058A1, #007AC5);
+}
+
+.grad-4{
+  background: linear-gradient(30deg, #313131, #1A1A1A);
+  background: -webkit-linear-gradient(30deg, #313131, #1A1A1A);
+}
+
+.car-item {
+  display:block;
+  height:100%;
+  width:100%;
+  border-radius:16px
+}

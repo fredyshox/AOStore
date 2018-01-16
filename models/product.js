@@ -2,6 +2,7 @@ const db = require('../db');
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
 const BaseModel = require('./baseModel');
+var fkConstraint = require('../scripts/util').fkConstraint;
 var name = 'Product';
 
 class Product extends BaseModel {
@@ -17,13 +18,22 @@ Product.prototype.initialize = async (() => {
                 	\`price\` FLOAT NOT NULL,
                 	\`description\` varchar(512) NOT NULL,
                 	\`quantity\` INT NOT NULL,
-                	\`parentID\` INT NOT NULL,
+                	\`categoryID\` INT NOT NULL,
                 	PRIMARY KEY (\`ID\`)
                 );`))
-  console.log(name + " created")
+  console.log(name + " created");
 })
 
-Product.prototype.products = (lastRow = 0, name = '') => {
+Product.prototype.addConstraints = async(() => {
+  await (fkConstraint('Products_fk0', `ALTER TABLE \`Products\`
+                                              ADD CONSTRAINT \`Products_fk0\`
+                                              FOREIGN KEY (\`categoryID\`)
+                                              REFERENCES \`ProductCategory\`(\`ID\`);`));
+  console.log(name + " constraints added");
+});
+
+Product.prototype.products = (lastRow = 0, name = '', category = undefined) => {
+  var queryFlag = false;
   var itemCount = 10;
   var querySql = `SELECT *
                   FROM \`Products\` p`
@@ -32,11 +42,30 @@ Product.prototype.products = (lastRow = 0, name = '') => {
     var pattern = '%' + name + '%';
     querySql = querySql + ' WHERE p.name LIKE ?';
     querySql = db.format(querySql, [pattern]);
+    queryFlag = true;
   }
-  querySql = querySql + ' LIMIT ?,?'
+
+  if(category) {
+    if(queryFlag) {
+      querySql = querySql + ' AND';
+    }else {
+      querySql = querySql + ' WHERE';
+    }
+
+    querySql = querySql + ' p.categoryID = ?'
+    querySql = db.format(querySql, [category])
+    queryFlag = true;
+  }
+
+  querySql = querySql + ' LIMIT ?,?';
   querySql = db.format(querySql, [lastRow, lastRow + itemCount]);
 
   return db.execute(querySql);
+}
+
+Product.prototype.random = () => {
+  return db.execute(`SELECT * FROM \`Products\`
+              ORDER BY RAND() LIMIT 5`);
 }
 
 Product.prototype.productWithID = (id) => {

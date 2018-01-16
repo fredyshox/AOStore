@@ -21,6 +21,57 @@
     </li>
   {{/each}}
 </ul>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".carousel").carousel('next')
+    console.log($(".carousel"));
+  });
+</script>
 <div class="container mt-4">
-  <h2>Hello World</h2>
+  <div id="featuredCarousel" class="carousel slide"  data-ride="carousel">
+    <div class="carousel-inner" style="height:400px;">
+      {{#each products as |product productID|}}
+        <div class="carousel-item car-item grad-{{productID}}">
+          <div class="carousel-caption">
+            {{!-- <img class="img-fluid" style="width:175px; height:175px; border-radius:16px" src="/no-image.png"> --}}
+            <i class="fa fa-comment fa-5x"></i>
+            <h3 class="mt-4">{{product.name}}</h3>
+            <p>{{product.description}}</p>
+            <a class="btn btn-primary" href="/products/{{product.ID}}">Check out</a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <a class="carousel-control-prev" href="#featuredCarousel" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#featuredCarousel" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+  <div class="text-center mt-4">
+    <h1>
+      Welcome to AOS
+    </h1>
+    <h5 class="mt-4">
+      Amazing Online Store is general goods store where enables clients to browse & buy various products.
+      Here's more text so it'd look cool. And here's another one.
+    </h5>
+      <br></br>
+      <i class="mt-2 fa fa-search fa-4x"></i>
+      <h5 class="mt-4">Search products using search-bar on top.</h5>
+
+      <br></br>
+      <i class="mt-2 fa fa-tag fa-4x"></i>
+      <h5 class="mt-4">Browse products.
+        <a href="/products">See all</a>
+      </h5>
+
+      <br></br>
+      <i class="mt-2 fa fa-shopping-cart fa-4x"></i>
+      <h5 class="mt-4">Sign in and make orders.</h5>
+  </div>
 </div>
