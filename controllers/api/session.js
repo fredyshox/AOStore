@@ -14,16 +14,16 @@ router.post('/authenticate', (req, res, next) => {
     var user = results[0][0];
     bcrypt.compare(req.body.password, user.password).then((valid) => {
       if(!valid) {
-        res.status(403).send("Invalid password");
+        res.status(403).json({error: "Invalid password"});
       }
       console.log(user);
       req.user = user;
       next()
     }).catch((err) => {
-      res.status(403).send("Internal Error");
+      res.status(403).json({error: "Internal Error"});
     })
   }).catch((err) => {
-    res.status(403).send("Invalid user");
+    res.status(403).json({error: "Invalid user"});
   });
 }, auth.generateToken, auth.applyToken, signInSuccess);
 
@@ -36,11 +36,11 @@ router.post('/register', (req, res, next) => {
       next();
     }).catch((err) => {
       console.log(err);
-      res.status(400).send("Cannot create user");
+      res.status(400).json({error: "Cannot create user"});
     })
   }).catch((err) => {
     console.log(err);
-    res.status(403).send("Internal Error");
+    res.status(403).json({error: "Internal Error"});
   })
 }, signInSuccess);
 

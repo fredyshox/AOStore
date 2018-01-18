@@ -1,7 +1,15 @@
 <div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="/account/orders">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/account/data">Shipping data</a>
+    </li>
+  </ul>
 {{#if addresses}}
   {{#each addresses}}
-    <div class="card-deck">
+    <div class="card-deck mt-4">
       {{#each this as |address addressID|}}
         <div class="card col-4 mx-auto">
           <div class="card-body">
@@ -38,7 +46,7 @@
     </div>
   {{/each}}
 {{else}}
-  <div class="text-center">
+  <div class="text-center mt-4">
     <h3>No shipping data</h3>
     <p>Looks like you haven't added any shipping data. You can add it now.</p>
   </div>

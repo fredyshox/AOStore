@@ -8,10 +8,11 @@ var port = 1337;
 var app = express();
 
 //view engine setup
-app.engine('hbs', hbs({extname: 'hbs',
-                       defaultLayout: 'main',
-                       layoutsDir: path.join(__dirname, 'views', 'layouts')
-                       }));
+app.engine('hbs', hbs({
+  extname: 'hbs',
+  defaultLayout: 'main',
+  layoutsDir: path.join(__dirname, 'views', 'layouts')
+}));
 app.set('views', path.join(__dirname, 'views', 'templates'));
 app.set('view engine', 'hbs');
 
@@ -30,6 +31,7 @@ app.use(require('./auth').authenticate);
 app.use('/login', require('./controllers/routes/login'));
 app.use('/products', require('./controllers/routes/products'));
 app.use('/contact', require('./controllers/routes/contact'));
+app.use('/admin', require('./controllers/routes/admin'));
 
 //home
 app.use('/', require('./controllers/routes/home'));
@@ -44,7 +46,6 @@ app.use('/order', require('./controllers/routes/orders'));
 app.use('/account', require('./controllers/routes/account'));
 
 //restricted api
-app.use(require('./auth').restrictAccessApi);
 app.use('/api/address', require('./controllers/api/address'));
 app.use('/api/orders', require('./controllers/api/orders'));
 

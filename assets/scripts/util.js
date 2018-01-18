@@ -8,6 +8,7 @@ export var httpPost = function(url, data, onSuccess, onError) {
     url: url,
     async: true,
     contentType: 'application/json',
+    dataType: 'json',
     data: JSON.stringify(data),
     success: onSuccess,
     error: onError,

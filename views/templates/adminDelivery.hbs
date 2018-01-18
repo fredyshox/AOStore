@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/permissions">Permissions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/category">Category</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/products">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Delivery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/backup">Backup</a>
+    </li>
+  </ul>
+
+  <div>
+    <form class="mt-4" id='add-delivery-form'>
+      <p><b>Add new delivery</b></p>
+      <input type="id" class="form-control my-3" required placeholder="Name" name="name">
+      <input type="number" step="0.01" class="form-control my-3" required placeholder="Price" name="price">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </span>
+    </form>
+
+    <hr class="my-4"></hr>
+
+    <form id='add-delivery-form'>
+      <p><b>Remove delivery</b></p>
+      <input type="id" class="form-control my-3" required placeholder="Deliverer ID" name="ID">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Delete</button>
+      </span>
+    </form>
+
+    <hr class="my-4"></hr>
+
+    <form id='add-delivery-form'>
+      <p><b>Change price delivery</b></p>
+      <input type="id" class="form-control my-3" required placeholder="Deliverer ID" name="ID">
+      <input type="number" step="0.01" class="form-control my-3" required placeholder="New price" name="price">
+      <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary">Change</button>
+      </span>
+    </form>
+
+    <!-- <div class="text-center">
+      <h3>You don't have permissions</h3>
+      <p>Page only available for administration</p>
+    </div> -->
+
+  </div>
+</div>

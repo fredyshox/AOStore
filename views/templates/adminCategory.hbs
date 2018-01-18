@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/permissions">Permissions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Category</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/products">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/delivery">Delivery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/backup">Backup</a>
+    </li>
+  </ul>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-sm">
+        <form class="mt-4" id='add-category-form'>
+          <p><b>Add new category</b></p>
+          <div class="form-group mt-2">
+            <input type="id" class="form-control" required placeholder="New category name" name="newCategory">
+          </div>
+          <div class="form-group">
+            <input type="id" class="form-control" placeholder="Select parent category - empty means no parent category" name="parentCategory">
+          </div>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Add category</button>
+          </span>
+        </form>
+      </div>
+
+      <div class="col-sm offset-md-1">
+        <form class="mt-4" id='rename-category-form'>
+          <p><b>Rename category<b/></p>
+          <div class="form-group mt-2">
+            <input type="id" class="form-control" required placeholder="Old id" name="oldCategory">
+          </div>
+          <div class="form-group">
+            <input type="id" class="form-control" required placeholder="New name" name="newCategory">
+          </div>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Rename category</button>
+          </span>
+        </form>
+      </div>
+    </div><br></br>
+      <div class="text-center">
+        <p><b>Remove Category</b></p>
+        <center>
+        <form class="form-inline justify-content-center" id='delete-category-form'>
+          <input type="id" class="form-control" required placeholder="Category id" name="oldCategory">
+          <button type="submit" class="ml-4 btn btn-danger">Delete Category</button>
+        </form>
+      </div>
+  </div>
+
+  <!-- <div class="text-center">
+      <h3>You don't have permissions</h3>
+      <p>Page only available for administration</p>
+    </div> -->
+
+</div>
+</div>

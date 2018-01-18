@@ -6,10 +6,10 @@ router.post('/', (req, res, next) => {
   console.log("Req body: " + JSON.stringify(req.body));
   Order.makeOrder(userID, req.body.deliveryID).then((fields) => {
 
-    res.status(201).send('Created');
+    res.status(201).json('Created');
   }).catch((err) => {
     console.log(err);
-    res.status(400).send('Error');
+    res.status(400).json({error: 'Error'});
   });
 });
 
