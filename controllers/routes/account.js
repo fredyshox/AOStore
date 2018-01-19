@@ -1,3 +1,12 @@
+//
+//  controllers/routes/account.js
+//  DB-Project
+//
+//  Routes for account management.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const Order = require('../../models').Order;
 const User2Address = require('../../models').User2Address;

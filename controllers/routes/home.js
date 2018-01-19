@@ -1,3 +1,12 @@
+//
+//  controllers/routes/home.js
+//  DB-Project
+//
+//  Routes for home webpage.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 var render = require('../../util').render;
 const ProductCategory = require('../../models').ProductCategory;

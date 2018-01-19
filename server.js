@@ -1,3 +1,13 @@
+//
+//  server.js
+//  DB-Project
+//
+//  Main script which starts the server.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');

@@ -1,3 +1,12 @@
+//
+//  models/orders.js
+//  DB-Project
+//
+//  Order model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var db = require('../db');
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');

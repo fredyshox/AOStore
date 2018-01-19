@@ -1,3 +1,12 @@
+//
+//  auth.js
+//  DB-Project
+//
+//  Set of authentication methods and handlers
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var jwt = require('jsonwebtoken');
 var secret = require('./config').secret;
 var cookieName = 'token'

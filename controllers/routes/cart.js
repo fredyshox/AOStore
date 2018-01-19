@@ -1,3 +1,12 @@
+//
+//  controllers/routes/cart.js
+//  DB-Project
+//
+//  Routes for cart page.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const Cart = require('../../models').Cart;
 

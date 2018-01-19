@@ -1,3 +1,10 @@
+//
+//  util.js
+//  DB-Project
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 const { spawnSync } = require('child_process');
 var config = require('./config');
 

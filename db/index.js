@@ -1,3 +1,12 @@
+//
+//  db/index.js
+//  DB-Project
+//
+//  Responsible for initializing database connection
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var config = require("../config").db;
 const mysql = require("mysql2/promise");
 

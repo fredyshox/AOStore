@@ -1,3 +1,12 @@
+//
+//  controllers/api/session.js
+//  DB-Project
+//
+//  REST Api for sign in/out.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const User = require('../../models').User;
 const bcrypt = require('bcrypt');

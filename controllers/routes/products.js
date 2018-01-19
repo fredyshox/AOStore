@@ -1,3 +1,12 @@
+//
+//  controllers/routes/product.js
+//  DB-Project
+//
+//  Routes for products.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const Product = require('../../models').Product;
 const Cart = require('../../models').Cart;

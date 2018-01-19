@@ -1,3 +1,12 @@
+//
+//  controllers/routes/login.js
+//  DB-Project
+//
+//  Routes for login page.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 var clearAuth = require('../../auth').clearAuth;
 

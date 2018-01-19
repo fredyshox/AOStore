@@ -1,3 +1,13 @@
+//
+//  models/triggers/index.js
+//  DB-Project
+//
+//  Initialization script for sql triggers.
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
+
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(__filename);

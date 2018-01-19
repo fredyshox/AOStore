@@ -1,3 +1,12 @@
+//
+//  controllers/api/address.js
+//  DB-Project
+//
+//  REST Api for address management
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var router = require('express').Router();
 const User2Address = require('../../models').User2Address;
 

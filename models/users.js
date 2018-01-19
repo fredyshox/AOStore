@@ -1,3 +1,13 @@
+//
+//  models/users.js
+//  DB-Project
+//
+//  User model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
+
 const db = require("../db");
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
