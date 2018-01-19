@@ -1,3 +1,12 @@
+//
+//  controllers/api/users.js
+//  DB-Project
+//
+//  REST Api for users.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require("express").Router();
 const User = require("../../models/users");
 

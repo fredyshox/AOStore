@@ -1,8 +1,17 @@
+//
+//  models/orders.js
+//  DB-Project
+//
+//  Order model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var db = require('../db');
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
 const BaseModel = require('./baseModel');
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 var name = 'Order';
 
 class Order extends BaseModel {
@@ -44,17 +53,29 @@ Order.prototype.calculateTotal = (orderID) => {
   return db.execute('SELECT calculateTotal(?);', [orderID]);
 }
 
-Order.prototype.orders = (userID) => {
+Order.prototype.ordersForUser = (userID) => {
   return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name as deliveryName, calculateTotal(o.ID) as total
                     FROM \`Orders\` o
                     JOIN \`Deliverer\` d ON o.deliveryID = d.ID
                     WHERE o.userID = ? ;`, [userID]);
 }
 
+Order.prototype.orders = () => {
+  return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name as deliveryName, calculateTotal(o.ID) as total
+                    FROM \`Orders\` o
+                    JOIN \`Deliverer\` d ON o.deliveryID = d.ID
+                    ORDER BY o.confirmed ASC`);
+}
+
 Order.prototype.confirm = (id) => {
   return db.execute(`UPDATE \`Orders\` o
                     SET o.confirmed = TRUE
                     WHERE o.ID = ? ;`, [id]);
+}
+
+Order.prototype.delete = (id) => {
+  return db.execute(`DELETE FROM \`Orders\`
+                     WHERE ID = ?`, [id]);
 }
 
 module.exports = new Order();

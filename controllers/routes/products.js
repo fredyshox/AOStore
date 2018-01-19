@@ -1,3 +1,12 @@
+//
+//  controllers/routes/product.js
+//  DB-Project
+//
+//  Routes for products.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const Product = require('../../models').Product;
 const Cart = require('../../models').Cart;
@@ -10,7 +19,9 @@ var restrictAccess = require('../../auth').restrictAccess;
 router.get('/', (req, res, next) => {
   var lastRow = req.query.lastRow;
   var name = req.query.name;
-  Product.products(lastRow, name).then((fields) => {
+  var category = req.query.category;
+
+  Product.products(lastRow, name, category).then((fields) => {
     var products = fields[0];
     req.template = {
       name: 'products',

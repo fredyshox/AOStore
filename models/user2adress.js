@@ -1,7 +1,17 @@
+//
+//  models/user2address.js
+//  DB-Project
+//
+//  User2Address model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
+
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 
 const BaseModel = require('./baseModel');
 var name = 'User2Address';
@@ -59,7 +69,7 @@ User2Address.prototype.addAddress = (uid, values) => {
   // return db.execute(`INSERT INTO \`User2Address\`(firstName, lastName, phoneNo, postalCode,
   //                   country, city, street, buildingNo, province, flatNo)
   //                   VALUES(?) `, valArr);
-  return db.query(`INSERT INTO User2Address
+  return db.query(`INSERT INTO \`User2Address\`
                     SET ? `, data);
 };
 

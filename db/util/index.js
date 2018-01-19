@@ -1,3 +1,12 @@
+//
+//  db/util/index.js
+//  DB-Project
+//
+//  Initializes mySQL helper procedures and returns js wrappers.
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(__filename);

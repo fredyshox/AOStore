@@ -1,3 +1,13 @@
+//
+//  models/users.js
+//  DB-Project
+//
+//  User model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
+
 const db = require("../db");
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
@@ -46,6 +56,12 @@ User.prototype.createUser = function(email, password) {
 User.prototype.create = (email, password, permissions) => {
   return db.execute(`INSERT INTO \`Users\` (email, password, permissions)
                     VALUES (?, ?, ?)`, [email, password, permissions]);
+}
+
+User.prototype.grantPermissions = (id, permissions) => {
+  return db.execute(`UPDATE \`Users\`
+                     SET permissions = ?
+                     WHERE ID = ?`, [permissions, id]);
 }
 
 

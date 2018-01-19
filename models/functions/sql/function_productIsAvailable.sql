@@ -5,7 +5,7 @@ DELIMITER $
 CREATE FUNCTION `productIsAvailable`(IxD INT, num INT)
 RETURNS BOOLEAN
 BEGIN
-  IF (SELECT quantity FROM `Products` WHERE ID=ixD) >= num
+  IF (SELECT quantity FROM `Products` WHERE ID=IxD) >= num
   THEN
     RETURN true;
   ELSE

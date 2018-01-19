@@ -11,7 +11,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id='cart-tbody'>
           {{#each items}}
           <tr>
             <td>{{this.name}}</td>
@@ -26,7 +26,7 @@
           {{/each}}
         </tbody>
       </table>
-      <h5 class="text-right">Sum: 44444 EUR</h5>
+      <h5 id="cart-sum" class="text-right">Sum: EUR</h5>
       <a href="/" class="btn btn-secondary pull-left mt-4">Go back</a>
       <a href="/order" class="btn btn-success pull-right mt-4">Proceed to checkout</a>
     </div>

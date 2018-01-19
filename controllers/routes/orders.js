@@ -1,3 +1,12 @@
+//
+//  controllers/routes/orders.js
+//  DB-Project
+//
+//  Routes for ordering things.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const Cart = require('../../models').Cart;
 const User2Address = require('../../models').User2Address;

@@ -7,7 +7,6 @@ $(document).ready(function() {
   $('#address-form').submit(function(e) {
       e.preventDefault();
 
-      var url = $(this).attr('action');
       var span = $('#info-span');
       var data = {};
       var inputs = $(this).find(":input");
@@ -17,7 +16,7 @@ $(document).ready(function() {
         data[input.name] = input.value;
       }
 
-      addAddress(util.getUrl(url), data);
+      addAddress(util.getUrl(addAddrApiUrl), data);
   });
 });
 
@@ -47,7 +46,7 @@ function rmAddress(url, data) {
 }
 
 function addAddress(url, data) {
-  return httpPost(url, data, function(res) {
+  return util.httpPost(url, data, function(res) {
     location.href = util.getUrl('/account/data');
   }, function(err) {
     var span = $('#info-span');

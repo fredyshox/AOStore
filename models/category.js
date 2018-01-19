@@ -1,7 +1,16 @@
+//
+//  models/category.js
+//  DB-Project
+//
+//  ProductCategory model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 
 const BaseModel = require("./baseModel");
 var name = 'ProductCategory';
@@ -25,15 +34,11 @@ Category.prototype.initialize = async (() => {
   console.log(name + " created")
 })
 
-//TODO
-Category.prototype.categories = (children) => {
-  if (children) {
-    return db.execute(`SELECT *
-                      FROM \`ProductCategory\` cat
-                      WHERE cat.\`parentID\` = NULL;`);
-  }else {
-
-  }
+Category.prototype.categories = () => {
+  return db.execute(`SELECT p.\`ID\`, p.\`name\`, c.\`ID\` as childID, c.\`name\` as childName
+                    FROM \`ProductCategory\` p
+                    LEFT JOIN \`ProductCategory\` c ON c.parentID = p.ID
+                    WHERE p.\`parentID\` IS NULL;`);
 };
 
 Category.prototype.categoryWithID = (id) => {
@@ -42,5 +47,27 @@ Category.prototype.categoryWithID = (id) => {
                     WHERE cat.\`ID\` = ? ;`, [id]);
 };
 
+Category.prototype.add = (values) => {
+  var keys = ['name', 'parentID'];
+
+  var data = {};
+  keys.forEach((key) => {
+    data[key] = (values[key]) ? values[key] : null;
+  });
+
+  return db.query(`INSERT INTO \`ProductCategory\`
+                     SET ? ;`, data);
+};
+
+Category.prototype.rename = (name, id) => {
+  return db.execute(`Update \`ProductCategory\`
+                  SET name = ?
+                  WHERE ID = ?`, [name, id]);
+};
+
+Category.prototype.delete = (id) => {
+  return db.execute(`DELETE FROM \`ProductCategory\`
+                    WHERE ID = ?`, [id]);
+};
 
 module.exports = new Category();

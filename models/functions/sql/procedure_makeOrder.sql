@@ -13,7 +13,7 @@ BEGIN
   DECLARE pid INT;
   DECLARE q INT;
   DECLARE o2p_cursor CURSOR FOR
-      (SELECT `productID`, `quantity`
+      (SELECT c.`productID`, c.`quantity`
       FROM `Cart` c WHERE c.userID = user);
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
@@ -27,12 +27,14 @@ BEGIN
     OPEN o2p_cursor;
       read_loop: LOOP
         FETCH o2p_cursor INTO pid, q;
-        IF (SELECT productIsAvailable(pid, q)) THEN
-          INSERT INTO `Orders2Products` (productID, quantity, orderID)
-          VALUES (pid, q, orderID);
-        ELSE
-          SET success = 1;
-          SET done = 1;
+        IF done THEN
+          IF (SELECT productIsAvailable(pid, q)) THEN
+            INSERT INTO `Orders2Products` (productID, quantity, orderID)
+            VALUES (pid, q, orderID);
+          ELSE
+            SET success = 1;
+            SET done = 1;
+          END IF;
         END IF;
 
         IF done THEN

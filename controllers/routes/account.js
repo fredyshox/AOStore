@@ -1,3 +1,12 @@
+//
+//  controllers/routes/account.js
+//  DB-Project
+//
+//  Routes for account management.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var router = require('express').Router();
 const Order = require('../../models').Order;
 const User2Address = require('../../models').User2Address;
@@ -10,7 +19,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/orders', (req, res, next) => {
-  Order.orders(req.user.id).then((fields) => {
+  Order.ordersForUser(req.user.id).then((fields) => {
     var orders = fields[0];
     req.template = {
       name: 'orders',
@@ -36,7 +45,7 @@ router.get('/data', (req, res, next) => {
         addresses: boxTheAddresses(addresses)
       }
     }
-    
+
     next();
   }).catch((err) => {
     console.log(err);

@@ -1,3 +1,12 @@
+//
+//  models/functions/index.js
+//  DB-Project
+//
+//  Initialization script for sql functions and procedures.
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(__filename);

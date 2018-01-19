@@ -74,6 +74,7 @@ function onLogin(url, email, password, onSuccess, onError) {
       url: url,
       async: true,
       contentType:'application/json',
+      dataType: 'json',
       data: JSON.stringify({
         email: email,
         password: password

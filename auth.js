@@ -1,3 +1,12 @@
+//
+//  auth.js
+//  DB-Project
+//
+//  Set of authentication methods and handlers
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
 var jwt = require('jsonwebtoken');
 var secret = require('./config').secret;
 var cookieName = 'token'
@@ -28,8 +37,8 @@ module.exports.applyToken = function(req, res, next) {
 
 module.exports.authenticate = (req, res, next) => {
   var token = req.cookies[cookieName];
-  console.log("token: " + token);
   if (token) {
+    console.log("token: " + token);
     jwt.verify(token, secret, function(err, decoded) {
       if (!err && decoded) {
         req.user = decoded;
@@ -40,25 +49,38 @@ module.exports.authenticate = (req, res, next) => {
     });
   } else {
     next();
-    //res.status(403).send("Auth token not provided.");
   }
 };
 
-module.exports.restrictAccessApi = (req, res, next) => {
+module.exports.restrictAccess = (req, res, next) => {
   if (req.user === undefined) {
-    res.status(401).send("Unauthorized");
+    res.format({
+      'text/html': () => {
+        res.redirect('/login');
+      },
+      'application/json': () => {
+        res.status(401).json({error: 'Unauthorized'});
+      }
+    })
   }else {
     console.log("user allowed to see page");
     next();
   }
 }
 
-module.exports.restrictAccess = (req, res, next) => {
-  if (req.user === undefined) {
-    res.redirect('/login');
-  }else {
-    console.log("user allowed to see page");
+module.exports.restrictAdminAccess = (req, res, next) => {
+  if (req.user.permissions !== 'user') {
     next();
+  }else {
+    console.log("User not allowed to enter admin page: " + req.user.ID);
+    res.format({
+      'text/html': () => {
+        res.redirect('/error');
+      },
+      'application/json': () => {
+        res.status(401).send("Unauthorized");
+      }
+    })
   }
 }
 

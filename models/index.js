@@ -1,3 +1,12 @@
+//
+//  models/index.js
+//  DB-Project
+//
+//  Models init script. Initializes all models.
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(__filename);

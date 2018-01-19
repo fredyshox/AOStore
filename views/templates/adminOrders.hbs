@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/permissions">Permissions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/category">Category</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/products">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/delivery">Delivery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/backup">Backup</a>
+    </li>
+  </ul>
+
+  {{!-- orders tab --}}
+  <p class="mt-4"><b>Confirm or discard orders</b></p>
+  <span id="action-status" class='text-danger font-weight-bold'></span>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Created date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Delivery</th>
+        <th scope="col">Value</th>
+        <th scope="col">Accept?</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each orders}}
+      <tr id="order-row-{{this.ID}}">
+        <td>{{this.ID}}</td>
+        <td>{{this.createdAt}}</td>
+        <td>
+          {{#if this.confirmed}} Confirmed {{else}} Waiting for confirmation {{/if}}
+        </td>
+        <td>{{this.deliveryName}}</td>
+        <td>{{this.total}}</td>
+        <td id="order-row-confirm-{{this.ID}}">
+          {{#if this.confirmed}}
+            <p class="text-success">Confirmed!</p>
+          {{else}}
+            <button type="button" id="button-confirm{{this.ID}}" value="{{this.ID}}" class="btn btn-success">
+              <i class="fa fa-check-circle"></i>
+            </button>
+            <button type="button" id="button-remove{{this.ID}}" value="{{this.ID}}" class="btn btn-danger">
+              <i class="fa fa-times-circle"></i>
+            </button>
+          {{/if}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</div>

@@ -1,3 +1,13 @@
+//
+//  server.js
+//  DB-Project
+//
+//  Main script which starts the server.
+//
+//  Created by Kacper Raczy & Filip Klich on 19.01.2018.
+//
+
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -8,10 +18,11 @@ var port = 1337;
 var app = express();
 
 //view engine setup
-app.engine('hbs', hbs({extname: 'hbs',
-                       defaultLayout: 'main',
-                       layoutsDir: path.join(__dirname, 'views', 'layouts')
-                       }));
+app.engine('hbs', hbs({
+  extname: 'hbs',
+  defaultLayout: 'main',
+  layoutsDir: path.join(__dirname, 'views', 'layouts')
+}));
 app.set('views', path.join(__dirname, 'views', 'templates'));
 app.set('view engine', 'hbs');
 
@@ -32,23 +43,26 @@ app.use('/products', require('./controllers/routes/products'));
 app.use('/contact', require('./controllers/routes/contact'));
 
 //home
-app.get('/', function(req, res) {
-  res.render('home', {user: req.user, categories: [{id:4, name:"Compyterrs"}]});
-});
+app.use('/', require('./controllers/routes/home'));
 
 //error
 app.get('/error', require('./util').errorHandler);
 
-//restricted
+//restricted routes
 app.use(require('./auth').restrictAccess);
 app.use('/cart', require('./controllers/routes/cart'));
 app.use('/order', require('./controllers/routes/orders'));
 app.use('/account', require('./controllers/routes/account'));
 
 //restricted api
-app.use(require('./auth').restrictAccessApi);
 app.use('/api/address', require('./controllers/api/address'));
 app.use('/api/orders', require('./controllers/api/orders'));
+
+//admin restricted routes & api
+app.use(require('./auth').restrictAdminAccess);
+app.use('/admin', require('./controllers/routes/admin'));
+app.use('/api/admin', require('./controllers/api/admin'));
+
 
 
 app.listen(port, function() {

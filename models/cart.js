@@ -1,8 +1,17 @@
+//
+//  models/cart.js
+//  DB-Project
+//
+//  Cart model class
+//
+//  Created by Kacper Raczy & Filip Klich on 15.01.2018.
+//
+
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
 const BaseModel = require('./baseModel');
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 var name = 'Cart';
 
 class Cart extends BaseModel {
