@@ -15,3 +15,15 @@ export var httpPost = function(url, data, onSuccess, onError) {
     type:'POST'
   })
 }
+
+export var inputData = function(element) {
+  var data = {};
+  var inputs = $(element).find(":input");
+  var input;
+  for(var i = 0; i<inputs.length; i++) {
+    input = inputs[i];
+    data[input.name] = input.value;
+  }
+
+  return data;
+}

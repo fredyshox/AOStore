@@ -60,16 +60,7 @@ module.exports.restrictAccess = (req, res, next) => {
 }
 
 module.exports.restrictAdminAccess = (req, res, next) => {
-  if (req.user === undefined) {
-    res.format({
-      'text/html': () => {
-        res.redirect('/login');
-      },
-      'application/json': () => {
-        res.status(401).send("Unauthorized");
-      }
-    })
-  }else if(req.user.permissions !== 'user') {
+  if (req.user.permissions !== 'user') {
     next();
   }else {
     console.log("User not allowed to enter admin page: " + req.user.ID);

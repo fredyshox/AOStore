@@ -38,5 +38,27 @@ Category.prototype.categoryWithID = (id) => {
                     WHERE cat.\`ID\` = ? ;`, [id]);
 };
 
+Category.prototype.add = (values) => {
+  var keys = ['name', 'parentID'];
+
+  var data = {};
+  keys.forEach((key) => {
+    data[key] = (values[key]) ? values[key] : null;
+  });
+
+  return db.query(`INSERT INTO \`ProductCategory\`
+                     SET ? ;`, data);
+};
+
+Category.prototype.rename = (name, id) => {
+  return db.execute(`Update \`ProductCategory\`
+                  SET name = ?
+                  WHERE ID = ?`, [name, id]);
+};
+
+Category.prototype.delete = (id) => {
+  return db.execute(`DELETE FROM \`ProductCategory\`
+                    WHERE ID = ?`, [id]);
+};
 
 module.exports = new Category();

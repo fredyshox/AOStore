@@ -31,7 +31,6 @@ app.use(require('./auth').authenticate);
 app.use('/login', require('./controllers/routes/login'));
 app.use('/products', require('./controllers/routes/products'));
 app.use('/contact', require('./controllers/routes/contact'));
-app.use('/admin', require('./controllers/routes/admin'));
 
 //home
 app.use('/', require('./controllers/routes/home'));
@@ -39,7 +38,7 @@ app.use('/', require('./controllers/routes/home'));
 //error
 app.get('/error', require('./util').errorHandler);
 
-//restricted
+//restricted routes
 app.use(require('./auth').restrictAccess);
 app.use('/cart', require('./controllers/routes/cart'));
 app.use('/order', require('./controllers/routes/orders'));
@@ -48,6 +47,12 @@ app.use('/account', require('./controllers/routes/account'));
 //restricted api
 app.use('/api/address', require('./controllers/api/address'));
 app.use('/api/orders', require('./controllers/api/orders'));
+
+//admin restricted routes & api
+app.use(require('./auth').restrictAdminAccess);
+app.use('/admin', require('./controllers/routes/admin'));
+app.use('/api/admin', require('./controllers/api/admin'));
+
 
 
 app.listen(port, function() {

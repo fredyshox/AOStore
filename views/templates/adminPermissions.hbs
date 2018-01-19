@@ -19,25 +19,27 @@
       <a class="nav-link" href="/admin/backup">Backup</a>
     </li>
   </ul>
-  <!-- TODO add check permission -->
+  
   <div>
     <form class="mt-4" id='permissions-form'>
       <div class="form-group">
         <p><b>Put user ID and select permissions</b></p>
 
         <div class="form-group">
-            <input type="id" class="form-control my-3" required placeholder="User ID" name="id"></input>
+            <input type="id" class="form-control my-3" required placeholder="User ID" name="userID"></input>
             <div class="btn-group" data-toggle="buttons">
               <label class="btn btn-primary">
-              <input type="radio" name="opt" checked value=0> User
+              <input type="radio" name="permissionOption" checked value='user'> User
             </label>
               <label class="btn btn-primary">
-              <input type="radio" name="opt" value=1> Moderator
+              <input type="radio" name="permissionOption" value='mod'> Moderator
             </label>
               <label class="btn btn-primary">
-              <input type="radio" name="opt" value=2> Admin
+              <input type="radio" name="permissionOption" value='admin'> Admin
             </label>
           </div>
+          <span id="up-perm-err" class='text-danger font-weight-bold'></span>
+          <span id="up-perm-suc" class='text-success font-weight-bold'></span>
           <div class="mx-auto text-center mt-4">
             <button type="submit" style="width: 4rem" class="btn btn-primary ">
               <i class="fa fa-plus"></i>

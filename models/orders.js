@@ -44,17 +44,29 @@ Order.prototype.calculateTotal = (orderID) => {
   return db.execute('SELECT calculateTotal(?);', [orderID]);
 }
 
-Order.prototype.orders = (userID) => {
+Order.prototype.ordersForUser = (userID) => {
   return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name as deliveryName, calculateTotal(o.ID) as total
                     FROM \`Orders\` o
                     JOIN \`Deliverer\` d ON o.deliveryID = d.ID
                     WHERE o.userID = ? ;`, [userID]);
 }
 
+Order.prototype.orders = () => {
+  return db.execute(`SELECT o.ID, o.createdAt, o.confirmed, d.name as deliveryName, calculateTotal(o.ID) as total
+                    FROM \`Orders\` o
+                    JOIN \`Deliverer\` d ON o.deliveryID = d.ID
+                    ORDER BY o.confirmed ASC`);
+}
+
 Order.prototype.confirm = (id) => {
   return db.execute(`UPDATE \`Orders\` o
                     SET o.confirmed = TRUE
                     WHERE o.ID = ? ;`, [id]);
+}
+
+Order.prototype.delete = (id) => {
+  return db.execute(`DELETE FROM \`Orders\`
+                     WHERE ID = ?`, [id]);
 }
 
 module.exports = new Order();

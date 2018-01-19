@@ -25,38 +25,35 @@
       <div class="col-sm">
         <form class="mt-4" id='add-category-form'>
           <p><b>Add new category</b></p>
-          <div class="form-group mt-2">
-            <input type="id" class="form-control" required placeholder="New category name" name="newCategory">
-          </div>
-          <div class="form-group">
-            <input type="id" class="form-control" placeholder="Select parent category - empty means no parent category" name="parentCategory">
-          </div>
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary">Add category</button>
-          </span>
+          <input type="id" class="form-control my-3" required placeholder="New category name" name="name">
+          <input type="id" class="form-control my-3" placeholder="Select parent category - empty means no parent category" name="parentID">
+          <span id="add-cat-err" class='text-danger font-weight-bold'></span>
+          <span id="add-cat-suc" class='text-success font-weight-bold'></span>
+          <button type="submit" class="btn btn-primary btn-block" style="width:8rem;">Add category</button>
         </form>
       </div>
 
       <div class="col-sm offset-md-1">
-        <form class="mt-4" id='rename-category-form'>
+        <form class="mt-4" id='up-category-form'>
           <p><b>Rename category<b/></p>
-          <div class="form-group mt-2">
-            <input type="id" class="form-control" required placeholder="Old id" name="oldCategory">
-          </div>
-          <div class="form-group">
-            <input type="id" class="form-control" required placeholder="New name" name="newCategory">
-          </div>
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary">Rename category</button>
-          </span>
+          <input type="id" class="form-control my-3" required placeholder="ID" name="ID">
+          <input type="id" class="form-control my-3" required placeholder="New name" name="name">
+          <span id="up-cat-err" class='text-danger font-weight-bold'></span>
+          <span id="up-cat-suc" class='text-success font-weight-bold'></span>
+          <button type="submit" class="btn btn-primary btn-block" style="width:10rem;">Rename category</button>
         </form>
       </div>
-    </div><br></br>
+    </div>
+
+    <hr class="my-4"></hr>
+
       <div class="text-center">
         <p><b>Remove Category</b></p>
+        <span id="rm-cat-err" class='text-danger font-weight-bold'></span>
+        <span id="rm-cat-suc" class='text-success font-weight-bold'></span>
         <center>
-        <form class="form-inline justify-content-center" id='delete-category-form'>
-          <input type="id" class="form-control" required placeholder="Category id" name="oldCategory">
+        <form class="form-inline justify-content-center" id='rm-category-form'>
+          <input type="id" class="form-control" required placeholder="Category id" name="ID">
           <button type="submit" class="ml-4 btn btn-danger">Delete Category</button>
         </form>
       </div>

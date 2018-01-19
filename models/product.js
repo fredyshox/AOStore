@@ -78,5 +78,21 @@ Product.prototype.isAvailable = (id) => {
   return db.execute('SELECT productIsAvailable(?);', [id]);
 }
 
+Product.prototype.add = (name, price, description, quantity, category) => {
+  return db.execute(`INSERT INTO \`Products\` (name, price, description, quantity, categoryID)
+                    VALUES (?, ?, ?, ?, ?);`, [name, price, description, quantity, category]);
+};
+
+Product.prototype.delete = (id) => {
+  return db.execute(`DELETE FROM \`Products\`
+                    WHERE ID = ?;`, [id]);
+}
+
+Product.prototype.rename = (id, name, price, description, quantity, category) => {
+  return db.execute(`Update \`Products\`
+                    SET name = ?, price=?, description=?, quantity=?, category=?
+                    WHERE ID=?;`, [name, price, description, quantity, category, id]);
+};
+
 
 module.exports = new Product();

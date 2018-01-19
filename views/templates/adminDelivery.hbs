@@ -25,31 +25,35 @@
       <p><b>Add new delivery</b></p>
       <input type="id" class="form-control my-3" required placeholder="Name" name="name">
       <input type="number" step="0.01" class="form-control my-3" required placeholder="Price" name="price">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary">Add</button>
-      </span>
+      <span id="add-del-err" class='text-danger font-weight-bold'></span>
+      <span id="add-del-suc" class='text-success font-weight-bold'></span>
+      <button type="submit" class="btn btn-primary btn-block" style="width:4rem;">Add</button>
     </form>
 
     <hr class="my-4"></hr>
 
-    <form id='add-delivery-form'>
-      <p><b>Remove delivery</b></p>
-      <input type="id" class="form-control my-3" required placeholder="Deliverer ID" name="ID">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary">Delete</button>
-      </span>
-    </form>
-
-    <hr class="my-4"></hr>
-
-    <form id='add-delivery-form'>
+    <form id='up-delivery-form'>
       <p><b>Change price delivery</b></p>
       <input type="id" class="form-control my-3" required placeholder="Deliverer ID" name="ID">
       <input type="number" step="0.01" class="form-control my-3" required placeholder="New price" name="price">
-      <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary">Change</button>
-      </span>
+      <span id="up-del-err" class='text-danger font-weight-bold'></span>
+      <span id="up-del-suc" class='text-success font-weight-bold'></span>
+      <button type="submit" class="btn btn-primary btn-block" style="width:6rem;">Update</button>
     </form>
+
+    <hr class="my-4"></hr>
+
+    <div class="text-center">
+      <p><b>Remove delivery</b></p>
+      <span id="rm-del-err" class='text-danger font-weight-bold'></span>
+      <span id="rm-del-suc" class='text-success font-weight-bold'></span>
+      <form class='form-inline justify-content-center' id='rm-delivery-form'>
+        <input type="id" class="form-control" required placeholder="Deliverer ID" name="ID">
+        <span class="input-group-btn">
+          <button type="submit" class="ml-4 btn btn-danger">Delete</button>
+        </span>
+      </form>
+    </div>
 
     <!-- <div class="text-center">
       <h3>You don't have permissions</h3>

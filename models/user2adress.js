@@ -59,7 +59,7 @@ User2Address.prototype.addAddress = (uid, values) => {
   // return db.execute(`INSERT INTO \`User2Address\`(firstName, lastName, phoneNo, postalCode,
   //                   country, city, street, buildingNo, province, flatNo)
   //                   VALUES(?) `, valArr);
-  return db.query(`INSERT INTO User2Address
+  return db.query(`INSERT INTO \`User2Address\`
                     SET ? `, data);
 };
 

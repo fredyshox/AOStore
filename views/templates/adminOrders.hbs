@@ -42,17 +42,17 @@
         <td>
           {{#if this.confirmed}} Confirmed {{else}} Waiting for confirmation {{/if}}
         </td>
-        <td>{{this.delivery.name}}</td>
+        <td>{{this.deliveryName}}</td>
         <td>{{this.total}}</td>
         <td>
           {{#if this.confirmed}}
             <p class="text-success">Confirmed!</p>
           {{else}}
-            <form class="form-inline justify-content-around" id="confirm">
-              <button type="submit" class="btn btn-success">
+            <div class="form-inline justify-content-around" id="confirm">
+              <button type="button" class="btn btn-success">
                 <i class="fa fa-check-circle"></i>
               </button>
-              <button type="submit" class="btn btn-danger">
+              <button type="button" class="btn btn-danger">
                 <i class="fa fa-times-circle"></i>
               </button>
             </form>

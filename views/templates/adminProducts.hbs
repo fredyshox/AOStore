@@ -26,36 +26,23 @@
       <input type="id" class="form-control my-3" required placeholder="Name" name="name">
       <input type="number" step="0.01" class="form-control my-3" required placeholder="Price" name="price">
       <input type="number" class="form-control my-3" required placeholder="Quantity" name="quantity">
-      <input type="id" class="form-control my-3" required placeholder="Add to category" name="category">
-      <textarea type="id" class="form-control my-3" rows="5" required placeholder="Description" name="desc"></textarea>
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary">Add products</button>
-      </span>
-    </form>
-
-    <hr class="my-4"></hr>
-
-    <form id='edit-product-form'>
-      <p><b>Rename category</b></p>
-      <input type="id" class="form-control my-3" required placeholder="Old product ID" name="oldProduct">
-      <input type="id" class="form-control my-3" placeholder="New name" name="newName">
-      <input type="number" step="0.01" class="form-control my-3" placeholder="Set new price" name="newPrice">
-      <input type="number" class="form-control my-3" placeholder="Set quantity" name="newQuantity">
-      <input type="id" class="form-control my-3" placeholder="Set category" name="newCategory">
-      <textarea type="id" class="form-control my-3" rows="5" required placeholder="Set new description" name="newDesc"></textarea>
-      <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary">Edit this product</button>
-        </span>
+      <input type="id" class="form-control my-3" required placeholder="Add to category" name="categoryID">
+      <textarea type="id" class="form-control my-3" rows="5" required placeholder="Description" name="description"></textarea>
+      <span id="add-prod-err" class='text-danger font-weight-bold'></span>
+      <span id="add-prod-suc" class='text-success font-weight-bold'></span>
+      <button type="submit" class="btn btn-primary btn-block" style="width:8rem;">Add products</button>
     </form>
 
     <hr class="my-4"></hr>
 
     <div class="text-center">
       <p><b>Remove Product</b></p>
+      <span id="rm-prod-err" class='text-danger font-weight-bold'></span>
+      <span id="rm-prod-suc" class='text-success font-weight-bold'></span>
       <center>
-      <form class="form-inline justify-content-center" id='delete-product-form'>
-        <input type="id" class="form-control" required placeholder="Product id to delete" name="oldProduct">
-        <button type="submit" class="btn btn-danger">Delete Product</button>
+      <form class="form-inline justify-content-center" id='rm-product-form'>
+        <input type="id" class="form-control" required placeholder="Product id to delete" name="ID">
+        <button type="submit" class="ml-4 btn btn-danger">Delete Product</button>
       </form>
     </div>
 

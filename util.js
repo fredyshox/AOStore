@@ -44,7 +44,10 @@ var render = (req, res, next) => {
   var data = req.template.data;
   var name = req.template.name;
   data.user = req.user
-  data.adminPermissions = (req.user.permissions !== 'user')
+  
+  if (req.user) {
+      data.adminPermissions = (req.user.permissions !== 'user')
+  }
 
   res.render(name, data);
 }

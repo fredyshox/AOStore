@@ -31,4 +31,14 @@ Deliverer.prototype.delivererWithID = (id) => {
                      WHERE d.ID = ?`, [id]);
 };
 
+Deliverer.prototype.add = (name, price) => {
+  return db.execute(`INSERT INTO \`Deliverer\` (name, price)
+                     VALUES (?, ?);`, [name, price]);
+};
+
+Deliverer.prototype.delete = (id) => {
+  return db.execute(`DELETE FROM \`Deliverer\`
+                    WHERE ID = ?`, [id]);
+};
+
 module.exports = new Deliverer();

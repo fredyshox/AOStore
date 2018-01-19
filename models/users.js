@@ -48,5 +48,11 @@ User.prototype.create = (email, password, permissions) => {
                     VALUES (?, ?, ?)`, [email, password, permissions]);
 }
 
+User.prototype.grantPermissions = (id, permissions) => {
+  return db.execute(`UPDATE \`Users\`
+                     SET permissions = ?
+                     WHERE ID = ?`, [permissions, id]);
+}
+
 
 module.exports = new User();
