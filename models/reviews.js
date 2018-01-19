@@ -1,7 +1,7 @@
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 
 const BaseModel = require('./baseModel');
 var name = 'Review';
@@ -33,7 +33,7 @@ Review.prototype.addConstraints = async(() => {
 
   await (fkConstraint('Reviews_fk1', `ALTER TABLE \`Reviews\`
                                       ADD CONSTRAINT \`Reviews_fk1\`
-                                      FOREIGN KEY (\`productID\`) 
+                                      FOREIGN KEY (\`productID\`)
                                       REFERENCES \`Products\`(\`ID\`);`));
 
   console.log(name + " constraints added");

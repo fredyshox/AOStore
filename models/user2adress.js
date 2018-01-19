@@ -1,7 +1,7 @@
 var db = require('../db');
 const async = require("asyncawait/async");
 const await = require("asyncawait/await");
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 
 const BaseModel = require('./baseModel');
 var name = 'User2Address';

@@ -2,7 +2,7 @@ var db = require('../db');
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
 const BaseModel = require('./baseModel');
-var fkConstraint = require('../scripts/util').fkConstraint;
+var fkConstraint = require('../db/util').fkConstraint;
 var name = 'Order';
 
 class Order extends BaseModel {

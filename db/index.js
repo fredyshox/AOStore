@@ -1,4 +1,4 @@
-var config = require("./config").db;
+var config = require("../config").db;
 const mysql = require("mysql2/promise");
 
 const connection = mysql.createPool(config);
