@@ -177,5 +177,37 @@ var upPermissions = function(data) {
 //Orders
 
 $(document).ready(function() {
+  $('button[id^="button-confirm"]').click(function() {
+    var orderID = this.value;
 
+    var data = {ID: orderID};
+    confirmOrder(data);
+  });
+
+  $('button[id^="button-remove"]').click(function() {
+    var orderID = this.value;
+
+    var data = {ID: orderID};
+    rmOrder(data);
+  });
 });
+
+var confirmOrder = function(data) {
+  var id = data.ID;
+  var url = util.getUrl(adminOrdersApi + '/' + id + '?confirm=' + 1);
+  util.httpPost(url, data, function(res) {
+    $('#order-row-confirm-'+id).html('<p class="text-success">Confirmed!</p>');
+  }, function(err) {
+    $('#action-status').text("Error: unable to confirm.");
+  });
+};
+
+var rmOrder = function(data) {
+  var id = data.ID;
+  var url = util.getUrl(adminOrdersApi + '/' + id);
+  util.httpPost(url, data, function(res) {
+    $('#order-row-' + id).remove();
+  }, function(err) {
+    $('#action-status').text("Error: unable to discard.");
+  });
+}

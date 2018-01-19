@@ -1,7 +1,7 @@
 DROP PROCEDURE IF EXISTS constraint_if_not_exists;
 
 DELIMITER |
-CREATE PROCEDURE constraint_if_not_exists (name varchar(64), stmt_str varchar(300))
+CREATE PROCEDURE constraint_if_not_exists (name varchar(64), stmt_str varchar(384))
 BEGIN
   IF NOT EXISTS (SELECT * FROM information_schema.TABLE_CONSTRAINTS WHERE
                  CONSTRAINT_SCHEMA = DATABASE() AND

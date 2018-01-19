@@ -1,6 +1,9 @@
 const { spawnSync } = require('child_process');
 var config = require('./config');
 
+var password = process.env.MYSQL_PASSWORD || 'password';
+config.password = password;
+
 var printMethods = (obj) => {
   for (var id in obj) {
     try {
@@ -44,7 +47,7 @@ var render = (req, res, next) => {
   var data = req.template.data;
   var name = req.template.name;
   data.user = req.user
-  
+
   if (req.user) {
       data.adminPermissions = (req.user.permissions !== 'user')
   }

@@ -14,7 +14,7 @@ Deliverer.prototype.initialize = async (() => {
   await (db.query(`CREATE TABLE IF NOT EXISTS \`Deliverer\` (
                 	\`ID\` INT NOT NULL AUTO_INCREMENT,
                 	\`name\` VARCHAR(16) NOT NULL,
-                	\`price\` FLOAT NOT NULL,
+                	\`price\` DECIMAL(10,2) NOT NULL,
                 	PRIMARY KEY (\`ID\`)
             );`));
   console.log(name + " created")

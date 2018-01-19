@@ -21,7 +21,8 @@
   </ul>
 
   {{!-- orders tab --}}
-  <h3 class="mt-4">Your Orders</h3>
+  <p class="mt-4"><b>Confirm or discard orders</b></p>
+  <span id="action-status" class='text-danger font-weight-bold'></span>
   <table class="table mt-4">
     <thead>
       <tr>
@@ -36,26 +37,24 @@
 
     <tbody>
       {{#each orders}}
-      <tr>
-        <td>{{this.id}}</td>
+      <tr id="order-row-{{this.ID}}">
+        <td>{{this.ID}}</td>
         <td>{{this.createdAt}}</td>
         <td>
           {{#if this.confirmed}} Confirmed {{else}} Waiting for confirmation {{/if}}
         </td>
         <td>{{this.deliveryName}}</td>
         <td>{{this.total}}</td>
-        <td>
+        <td id="order-row-confirm-{{this.ID}}">
           {{#if this.confirmed}}
             <p class="text-success">Confirmed!</p>
           {{else}}
-            <div class="form-inline justify-content-around" id="confirm">
-              <button type="button" class="btn btn-success">
-                <i class="fa fa-check-circle"></i>
-              </button>
-              <button type="button" class="btn btn-danger">
-                <i class="fa fa-times-circle"></i>
-              </button>
-            </form>
+            <button type="button" id="button-confirm{{this.ID}}" value="{{this.ID}}" class="btn btn-success">
+              <i class="fa fa-check-circle"></i>
+            </button>
+            <button type="button" id="button-remove{{this.ID}}" value="{{this.ID}}" class="btn btn-danger">
+              <i class="fa fa-times-circle"></i>
+            </button>
           {{/if}}
         </td>
       </tr>

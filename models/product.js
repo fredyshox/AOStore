@@ -15,10 +15,10 @@ Product.prototype.initialize = async (() => {
   await (db.query(`CREATE TABLE IF NOT EXISTS  \`Products\` (
                 	\`ID\` INT NOT NULL AUTO_INCREMENT,
                 	\`name\` varchar(64) NOT NULL,
-                	\`price\` FLOAT NOT NULL,
+                	\`price\` DECIMAL(10,2) NOT NULL,
                 	\`description\` varchar(512) NOT NULL,
                 	\`quantity\` INT NOT NULL,
-                	\`categoryID\` INT NOT NULL,
+                	\`categoryID\` INT,
                 	PRIMARY KEY (\`ID\`)
                 );`))
   console.log(name + " created");
@@ -28,7 +28,8 @@ Product.prototype.addConstraints = async(() => {
   await (fkConstraint('Products_fk0', `ALTER TABLE \`Products\`
                                               ADD CONSTRAINT \`Products_fk0\`
                                               FOREIGN KEY (\`categoryID\`)
-                                              REFERENCES \`ProductCategory\`(\`ID\`);`));
+                                              REFERENCES \`ProductCategory\`(\`ID\`)
+                                              ON DELETE SET NULL;`));
   console.log(name + " constraints added");
 });
 
